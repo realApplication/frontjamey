@@ -10,8 +10,7 @@ import {
   transition,
   boxShadow,
   drawerWidth,
-} from "assets/jss/material-kit-react.js";
-
+} from "../../../jss/material-kit-react";
 const headerStyle = {
   appBar: {
     display: "flex",

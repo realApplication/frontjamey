@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React ,{useContext} from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -19,46 +19,47 @@ import CardBody from "../../components/Card/CardBody.js";
 import CardHeader from "../../components/Card/CardHeader.js";
 import CardFooter from "../../components/Card/CardFooter.js";
 import CustomInput from "../../components/CustomInput/CustomInput.js";
-
+import { LoginContext } from '../context.js';
 import styles from "../../assets/jss/material-kit-react/views/landingPage";
-import {When} from 'react-if';
-import { LoginContext } from '../context';
-
 
 import image from "../../assets/img/bg7.jpg";
+//assets/img/bg7.jpg
 const useStyles = makeStyles(styles);
+
 
 export default function LoginPage(props) {
 
- 
-  const loginContext =useContext(LoginContext) ;
-   console.log('loginContext',loginContext);
+  const loginContext = useContext(LoginContext);
+  console.log('loginContext', loginContext);
+  const [userName, setUserName] = React.useState("");;
+  const [email, setEmail] = React.useState("");;
+  const [password, setPassword] = React.useState("");
 
-   const [userName,setUserName]= React.useState("");;
-   const [email,setEmail]= React.useState("");;
-   const [password,setPassword]= React.useState("");
 
- function handleChangeUserName (e)  {
-   console.log('user name ',e.target.value);
-      setUserName(e.target.value )
+  function handleChangeUserName(e) {
+    // this.setState({ [e.target.name]: e.target.value });
+    console.log('user name', e.target.value);
+    setUserName(e.target.value)
   }
-  function handleChangePassword  (e) {
-       console.log('password',e.target.value);
-      setPassword(e.target.value )
+  function handleChangePassword(e) {
+    // this.setState({ [e.target.name]: e.target.value });
+    setPassword(e.target.value)
   }
   const handleChangeEmail = e => {
-      // this.setState({ [e.target.name]: e.target.value });
-      setEmail(e.target.value )
+    // this.setState({ [e.target.name]: e.target.value });
+    setEmail(e.target.value)
   }
-  function handleSubmit  (e) {
-      e.preventDefault();
-      // use login context to perform login operation
-      loginContext.login(userName, password);
+  const handleSubmit = e => {
+    e.preventDefault();
+    // use login context to perform login operation
+    loginContext.login(userName, password);
 
   }
   const handleSubmitSignup = e => {
-      e.preventDefault();
-      loginContext.signup(email,userName, password);
+    e.preventDefault();
+    // use login context to perform login operation
+    loginContext.signup(email, userName, password);
+    // console.log("this.state.email",this.state.email);
 
   }
 
@@ -66,7 +67,6 @@ export default function LoginPage(props) {
   setTimeout(function () {
     setCardAnimation("");
   }, 700);
-  
   const classes = useStyles();
   const { ...rest } = props;
   return (
@@ -90,10 +90,10 @@ export default function LoginPage(props) {
           <GridContainer justify="center">
             <GridItem xs={12} sm={12} md={4}>
               <Card className={classes[cardAnimaton]}>
-                <form onSubmit={handleSubmit} className={classes.form}>
+                <form onSubmit={handleSubmitSignup} className={classes.form}>
                   <CardHeader color="primary" className={classes.cardHeader}>
                     <div >
-                      <h4 style={{ textAlign: "center" }}>Login</h4>
+                      <h4 style={{ textAlign: "center" }}>SignUp</h4>
                     </div>
 
                     <div className={classes.socialLine}>
@@ -131,17 +131,30 @@ export default function LoginPage(props) {
                   </div>
 
                   <CardBody>
-                
                     <CustomInput
-                      
+                      labelText="First Name..."
+                      id="first"
+                      formControlProps={{
+                        fullWidth: true,
+                      }}
+                      inputProps={{
+                        onChange: (e) => handleChangeUserName(e),
+                        type: "text",
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <People className={classes.inputIconsColor} />
+                          </InputAdornment>
+                        ),
+                      }}
+                    />
+                    <CustomInput
                       labelText="Email..."
                       id="email"
                       formControlProps={{
                         fullWidth: true,
                       }}
-
                       inputProps={{
-                        onChange: (e) => handleChangeUserName(e),
+                        onChange: (e) => handleChangeEmail(e),
                         type: "email",
                         endAdornment: (
                           <InputAdornment position="end">
@@ -149,7 +162,6 @@ export default function LoginPage(props) {
                           </InputAdornment>
                         ),
                       }}
-                      
                     />
                     <CustomInput
                       labelText="Password"
@@ -169,18 +181,17 @@ export default function LoginPage(props) {
                         ),
                         autoComplete: "off",
                       }}
-                      
                     />
                   </CardBody>
                   <CardFooter className={classes.cardFooter}>
-                    <Button type="submit" simple color="primary" size="lg">
-                      LogIn
+                    <Button type='submit' simple color="primary" size="lg">
+                      SignUP
                     </Button>
-                    <Link to={"/signup-page"} className={classes.link}>
+                    <Link to={"/login-page"} className={classes.link}>
                       <div id="buttons">
 
-                        <div xs={12} sm={12} md={8} class="group">
-                          <a style={{ marginRight: "0rem" }} class="blam">Register</a>
+                        <div xs={12} sm={12} md={8} >
+                          <a style={{ marginRight: "0rem" }} class="blam"> LogIn</a>
                         </div>
 
                       </div>

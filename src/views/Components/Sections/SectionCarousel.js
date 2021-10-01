@@ -6,21 +6,20 @@ import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 import LocationOn from "@material-ui/icons/LocationOn";
 // core components
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import Card from "components/Card/Card.js";
+import GridContainer from "../../../components/Grid/GridContainer";
 
-import image1 from "assets/img/bg.jpg";
-import image2 from "assets/img/bg2.jpg";
-import image3 from "assets/img/bg3.jpg";
+import GridItem from "../../../components/Grid/GridItem";
+
+import Card from "../../../components/Card/Card";
+
 import { connect } from 'react-redux';
 import { getRemoteData } from '../../../store/actions'
-import styles from "assets/jss/material-kit-react/views/componentsSections/carouselStyle.js";
+import styles from "../../../assets/jss/material-kit-react/views/componentsSections/carouselStyle";
 
 const useStyles = makeStyles(styles);
 
 function SectionCarousel(props) {
-  console.log('sammmmmmmmmm',props.bookData[0][0].title);
+  // console.log('sammmmmmmmmm',props.bookData[0][0].title);
   useEffect(() => {
     props.getRemoteData();
 
@@ -43,51 +42,51 @@ function SectionCarousel(props) {
               <Carousel {...settings}>
                 
                 <div>
-                  <img src={props.bookData[0][0].image} alt="First slide" className="slick-image" />
+                  <img src={props.bookData[0]&&props.bookData[0][0].image} alt="First slide" className="slick-image" />
                   <div className="slick-caption">
                     <h4>
                       <h1 className="slick-icons" />
-                     {props.bookData[0][0].title}
+                     {props.bookData[0]&&props.bookData[0][0].title}
                     </h4>
                   </div>
                 </div>
                 <div>
                   <img
-                    src={props.bookData[0][1].image}
+                    src={props.bookData[0]&&props.bookData[0][1].image}
                     alt="Second slide"
                     className="slick-image"
                   />
                   <div className="slick-caption">
                     <h4>
                       <h1 className="slick-icons" />
-                      {props.bookData[0][1].title}
+                      {props.bookData[0]&&props.bookData[0][1].title}
                     </h4>
                   </div>
                 </div>
                 <div>
-                  <img src={props.bookData[0][3].image} alt="Third slide" className="slick-image" />
+                  <img src={props.bookData[0]&&props.bookData[0][3].image} alt="Third slide" className="slick-image" />
                   <div className="slick-caption">
                     <h4>
                       <h1 className="slick-icons" />
-                      {props.bookData[0][3].title}
+                      {props.bookData[0]&&props.bookData[0][3].title}
                     </h4>
                   </div>
                 </div>
                 <div>
-                  <img src={props.bookData[0][4].image} alt="Fourth slide" className="slick-image" />
+                  <img src={props.bookData[0]&&props.bookData[0][4].image} alt="Fourth slide" className="slick-image" />
                   <div className="slick-caption">
                     <h4>
                       <h1 className="slick-icons" />
-                      {props.bookData[0][4].title}
+                      {props.bookData[0]&&props.bookData[0][4].title}
                     </h4>
                   </div>
                 </div>
                 <div>
-                  <img src={props.bookData[0][5].image} alt="Fifth slide" className="slick-image" />
+                  <img src={props.bookData[0]&&props.bookData[0][5].image} alt="Fifth slide" className="slick-image" />
                   <div className="slick-caption">
                     <h4>
                       <h1 className="slick-icons" />
-                      {props.bookData[0][5].title}
+                      {props.bookData[0]&&props.bookData[0][5].title}
                     </h4>
                   </div>
                 </div>
