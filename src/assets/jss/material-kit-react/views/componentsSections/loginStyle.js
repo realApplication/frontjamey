@@ -1,4 +1,5 @@
-import { container } from "assets/jss/material-kit-react.js";
+
+import { container } from "../../../../jss/material-kit-react";
 
 import image from "assets/img/sign.jpg";
 

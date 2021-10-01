@@ -2,15 +2,15 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { createBrowserHistory } from "history";
 import { Router, Route, Switch } from "react-router-dom";
-
-import "assets/scss/material-kit-react.scss?v=1.10.0";
-
+// import "./assets/scss/"
+// import "assets/scss/material-kit-react.scss?v=1.10.0";
+import "./assets/scss/material-kit-react.scss"
 // pages for this product
-import Components from "views/Components/Components.js";
-import LandingPage from "views/LandingPage/LandingPage.js";
-import ProfilePage from "views/ProfilePage/ProfilePage.js";
-import LoginPage from "views/LoginPage/LoginPage.js";
-
+import Components from "./views/Components/Components";
+import LoginPage from "./views/LoginPage/LoginPage.js";
+import AboutUs from "./views/AboutUs/AboutUs"
+import SignupPage from "./views/SignupPage/SignupPage"
+import LoginProvider from './views/context';
 var hist = createBrowserHistory();
 
 function App() {
@@ -18,10 +18,14 @@ function App() {
     <>
       <Router history={hist}>
         <Switch>
-          <Route path="/landing-page" component={LandingPage} />
-          <Route path="/profile-page" component={ProfilePage} />
+        <LoginProvider>
           <Route path="/login-page" component={LoginPage} />
-          <Route path="/" component={Components} />
+          <Route path="/signup-page" component={SignupPage} />
+          <Route path="/about-us" component={AboutUs} />     
+          <Route path="/main" component={Components} />
+        
+          </LoginProvider>
+          {/* <Route path="/" component={Components} /> */}
         </Switch>
       </Router>
     </>

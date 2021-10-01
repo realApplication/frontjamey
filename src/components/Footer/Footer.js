@@ -7,11 +7,11 @@ import classNames from "classnames";
 // material-ui core components
 import { List, ListItem } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-
+import { Link } from "react-router-dom";
 // @material-ui/icons
 import Favorite from "@material-ui/icons/Favorite";
-
-import styles from "assets/jss/material-kit-react/components/footerStyle.js";
+import Button from "../../components/CustomButtons/Button";
+import styles from "../../assets/jss/material-kit-react/components/footerStyle";
 
 const useStyles = makeStyles(styles);
 
@@ -35,19 +35,23 @@ export default function Footer(props) {
               <a
                 href="/"
                 className={classes.block}
-                
+
               >
                 Creative Tim
               </a>
             </ListItem>
             <ListItem className={classes.inlineBlock}>
-              <a
-                href="/"
-                className={classes.block}
-               
-              >
+              {/* <Link to={"/aboutus"} className={classes.link}>
+
                 About us
-              </a>
+              </Link> */}
+              <Link to={"/about-us"} className={classes.link}>
+                <div class="group">
+                  <a >  About Us </a>
+
+                </div>
+
+              </Link>
             </ListItem>
           </List>
         </div>
@@ -55,9 +59,9 @@ export default function Footer(props) {
           &copy; {1900 + new Date().getYear()} , made with{" "}
           <Favorite className={classes.icon} /> by{" "}
           <a
-            href="https://www.creative-tim.com?ref=mkr-footer"
+            href="/"
             className={aClasses}
-            target="_blank"
+            
           >
             Creative ASAC Team
           </a>{" "}

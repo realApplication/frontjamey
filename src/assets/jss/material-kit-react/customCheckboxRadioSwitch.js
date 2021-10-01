@@ -3,8 +3,7 @@ import {
   dangerColor,
   roseColor,
   grayColor,
-} from "assets/jss/material-kit-react.js";
-
+} from "../../jss/material-kit-react";
 const customCheckboxRadioSwitch = {
   checkRoot: {
     padding: "12px",

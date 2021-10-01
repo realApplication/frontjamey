@@ -4,10 +4,11 @@ import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 
 // core components
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
+import GridContainer from "../../../components/Grid/GridContainer";
 
-import styles from "assets/jss/material-kit-react/views/componentsSections/completedStyle.js";
+import GridItem from "../../../components/Grid/GridItem";
+
+import styles from "../../../assets/jss/material-kit-react/views/componentsSections/completedStyle";
 
 const useStyles = makeStyles(styles);
 
