@@ -5,7 +5,7 @@ import {  useEffect } from "react";
 
 
 
-function Main(props) {
+function PickedCourses(props) {
     console.log('props.daaaaaata teaws', props.bookData[0]);
 
     useEffect(()=> {
@@ -17,9 +17,6 @@ function Main(props) {
     
     return (
         <>
-
-                
-
               <section>
                   <h1>MY Cart</h1>
             <ul>
@@ -51,4 +48,4 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {  getRemoteData };
 
-export default connect(mapStateToProps,mapDispatchToProps)(Main)
+export default connect(mapStateToProps,mapDispatchToProps)(PickedCourses)
