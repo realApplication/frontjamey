@@ -1,4 +1,4 @@
-import React ,{useContext} from "react";
+import React, { useContext } from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -30,7 +30,7 @@ const useStyles = makeStyles(styles);
 export default function LoginPage(props) {
 
   const loginContext = useContext(LoginContext);
-  console.log('loginContext', loginContext);
+  // console.log('loginContext', loginContext);
   const [userName, setUserName] = React.useState("");;
   const [email, setEmail] = React.useState("");;
   const [password, setPassword] = React.useState("");
@@ -38,7 +38,7 @@ export default function LoginPage(props) {
 
   function handleChangeUserName(e) {
     // this.setState({ [e.target.name]: e.target.value });
-    console.log('user name', e.target.value);
+    // console.log('user name', e.target.value);
     setUserName(e.target.value)
   }
   function handleChangePassword(e) {
@@ -88,58 +88,30 @@ export default function LoginPage(props) {
       >
         <div className={classes.container}>
           <GridContainer justify="center">
-            <GridItem xs={12} sm={12} md={4}>
+            <GridItem xs={12} sm={12} md={4} style={{ marginTop: "80px" }}>
               <Card className={classes[cardAnimaton]}>
                 <form onSubmit={handleSubmitSignup} className={classes.form}>
                   <CardHeader color="primary" className={classes.cardHeader}>
                     <div >
-                      <h4 style={{ textAlign: "center" }}>SignUp</h4>
+                      <h4 style={{ textAlign: "center", fontStyle: "bold", textShadow: "2px 3px 3px black" }} >Student SignUp </h4>
                     </div>
 
-                    <div className={classes.socialLine}>
-                      <Button
-                        justIcon
-                        href="#pablo"
-                        target="_blank"
-                        color="transparent"
-                        onClick={(e) => e.preventDefault()}
-                      >
-                        <i className={"fab fa-twitter"} />
-                      </Button>
-                      <Button
-                        justIcon
-                        href="#pablo"
-                        target="_blank"
-                        color="transparent"
-                        onClick={(e) => e.preventDefault()}
-                      >
-                        <i className={"fab fa-facebook"} />
-                      </Button>
-                      <Button
-                        justIcon
-                        href="#pablo"
-                        target="_blank"
-                        color="transparent"
-                        onClick={(e) => e.preventDefault()}
-                      >
-                        <i className={"fab fa-google-plus-g"} />
-                      </Button>
-                    </div>
                   </CardHeader>
-                  <div>
-                    <p style={{ textAlign: "center" }}> Student Form </p>
-                  </div>
+
 
                   <CardBody>
                     <CustomInput
                       labelText="First Name..."
                       id="first"
+                      required
                       formControlProps={{
                         fullWidth: true,
+
                       }}
                       inputProps={{
                         onChange: (e) => handleChangeUserName(e),
                         type: "text",
+
                         endAdornment: (
                           <InputAdornment position="end">
                             <People className={classes.inputIconsColor} />
@@ -184,17 +156,21 @@ export default function LoginPage(props) {
                     />
                   </CardBody>
                   <CardFooter className={classes.cardFooter}>
-                    <Button type='submit' simple color="primary" size="lg">
-                      SignUP
-                    </Button>
-                    <Link to={"/login-page"} className={classes.link}>
+                  
+                    <Button to={"/main"} type='submit' style={{marginTop:"-100px",marginLeft:"40px"}} simple color="primary" size="lg">
                       <div id="buttons">
 
                         <div xs={12} sm={12} md={8} >
-                          <a style={{ marginRight: "0rem" }} class="blam"> LogIn</a>
+                          <a style={{ marginRight: "0rem" }} class="blam"> SignUp</a>
                         </div>
-
+                          {/* {loginContext.loggedIn && alert('You are successfully registar!')} */}
                       </div>
+                    </Button>
+                  
+                    <Link to={"/login-page"} className={classes.link}>
+                    <Button simple color="primary" size="lg" style={{marginTop:"20px" ,marginLeft :"-190px"}} >
+                        Back to LogIn 
+                      </Button>
                     </Link>
                   </CardFooter>
                 </form>

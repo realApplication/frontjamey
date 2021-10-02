@@ -25,17 +25,17 @@ import { When } from 'react-if';
 import { LoginContext } from '../context';
 
 
-import image from "../../assets/img/bg7.jpg";
+import image from "../../assets/img/bg9.jpg";
 const useStyles = makeStyles(styles);
 
 export default function LoginPage(props) {
 
 
   const loginContext = useContext(LoginContext);
-  // console.log('loginContext', loginContext);
+  console.log('loginContext-------------->supervisour', loginContext);
 
   const [userName, setUserName] = React.useState("");;
-  const [email, setEmail] = React.useState("");;
+
   const [password, setPassword] = React.useState("");
 
   function handleChangeUserName(e) {
@@ -50,10 +50,17 @@ export default function LoginPage(props) {
   function handleSubmit(e) {
     e.preventDefault();
     // use login context to perform login operation
-    loginContext.login(userName, password);
+    loginContext.loginSupervisor(userName, password);
 
   }
- 
+  function logout(e) {
+    e.preventDefault();
+    // use login context to perform login operation
+    loginContext.logoutSupervisor();
+
+  }
+
+
   const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
   setTimeout(function () {
     setCardAnimation("");
@@ -80,12 +87,12 @@ export default function LoginPage(props) {
       >
         <div className={classes.container}>
           <GridContainer justify="center" >
-            <GridItem xs={12} sm={12} md={4} style={{ marginTop: "80px" }}>
-              <Card className={classes[cardAnimaton]}>
+            <GridItem  xs={12} sm={12} md={4} style={{ marginTop: "80px" }}>
+              <Card style={{backgroundColor:"#FFE4C4"}} className={classes[cardAnimaton]}>
                 <form onSubmit={handleSubmit} className={classes.form}>
                   <CardHeader color="primary" className={classes.cardHeader}>
                     <div >
-                      <h4 style={{ textAlign: "center", fontStyle: "bold", textShadow: "2px 3px 3px black" }}>Student Login</h4>
+                      <h4 style={{ textAlign: "center", fontStyle: "bold", textShadow: "2px 3px 3px black" }}>Supervisour Login</h4>
                     </div>
 
 
@@ -136,9 +143,9 @@ export default function LoginPage(props) {
                     />
                   </CardBody>
                   <CardFooter className={classes.cardFooter}>
-                 
-                 
-                    <Button   to={"/main"} type="submit" simple color="primary" style={{marginTop:"-100px",marginLeft:"50px"}} size="lg">
+
+
+                    <Button to={"/main"} type="submit" simple color="primary" style={{ marginTop: "-10px", marginLeft: "50px" }} size="lg">
                       <div id="buttons">
 
                         <div xs={12} sm={12} md={8} class="group">
@@ -147,12 +154,19 @@ export default function LoginPage(props) {
 
                       </div>
                     </Button>
-                   
+
                     <Link to={"/signup-page"} className={classes.link}>
-                      <Button simple color="primary" size="lg" style={{marginTop:"40px" ,marginLeft :"-230px"}} >
-                        If You have not account 
+                      <Button simple color="primary" size="lg" style={{ marginTop: "40px", marginLeft: "-230px" }} >
+                       
                       </Button>
-  
+                      <When condition={loginContext.loggedInSuper}>
+                       
+                      <Button onClick={logout} simple color="primary" size="lg" style={{ marginTop: "40px", marginLeft: "-130px" }} >
+                        Logout supervisour
+                      </Button>
+                        
+                      
+                      </When>
                     </Link>
                   </CardFooter>
                 </form>

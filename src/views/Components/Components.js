@@ -21,6 +21,7 @@ import SectionBasics from "./Sections/SectionBasics.js";
 import SectionCarousel from "./Sections/SectionCarousel.js";
 import './login.css'
 import styles from "../../assets/jss/material-kit-react/views/components";
+
 import { LoginContext } from '../context';
 const useStyles = makeStyles(styles);
 
@@ -83,6 +84,11 @@ export default function Components(props) {
             </Link>
           </When>
           <SectionCarousel />
+          <div style={{textAlign:"center"}}>
+          <p >Discription </p>
+          <a  href='book.pdf' attributes-list download>Click to download</a>
+          </div>
+          
         </GridItem>
         <SectionBasics />
 

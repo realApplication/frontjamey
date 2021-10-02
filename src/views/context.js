@@ -11,21 +11,32 @@ const API = 'http://localhost:7896';
  export default function LoginProvider(props) {
     
     const [loggedIn, setLoggedIn] = useState(false);
+    const [loggedInSuper, setLoggedInSuper] = useState(false);
     const [user, setUser] = useState({email: ''});
 
     // token will be saved in the cookies after login
 
     const login = async (email, password) => { // from login form
-     console.log('sam------------------------------',email,password);
+    //  console.log('sam------------------------------',email,password);
         try {
             const response = await superagent.post(`${API}/signin`).set('authorization', `Basic ${base64.encode(`${email}:${password}`)}`)
             console.log(response.body);
             validateMyToken(response.body.token);
         } catch(err) {
-         console.log('soooooooooooooooooooory');
+        //  console.log('soooooooooooooooooooory');
         }
     }
-
+    const loginSupervisor = async (email, password) => { // from login form
+        // console.log('loginSupervisor------------------------------',email,password);
+           try {
+               const response = await superagent.post(`${API}/v1/signin`).set('authorization', `Basic ${base64.encode(`${email}:${password}`)}`)
+            //    console.log('login supervisor---->',response.body.supervisor.token);
+               validateMyTokenloginSupervisor(response.body.supervisor.token);
+            //    console.log('on try');
+           } catch(err) {
+            console.log('sooooooologinSupervisorooooooooooooory');
+           }
+       }
     
     const signup = async (email,userName, password) => { // from login form
         let obj ={
@@ -36,7 +47,6 @@ const API = 'http://localhost:7896';
         console.log("obj",obj);
         try {
             const response = await superagent.post(`${API}/signup`,obj)
-            console.log('resssssssssssssss',response.body);
             validateMyTokenSignup(response.body.student.token);
             console.log(response.body.student.token);
         } catch(err) {
@@ -49,17 +59,14 @@ const API = 'http://localhost:7896';
     useEffect(() => {
         const myTokenCookie = cookie.load('token'); // read the cookie from browser
         console.log("myTokenCookie: ", myTokenCookie)
-        console.log("initial render here !!");
+        // console.log("initial render here !!");
         validateMyToken(myTokenCookie);
     }, []);
 
     const validateMyToken = (token)=> {
         if (token) {
             const user = jwt.decode(token); 
-            console.log("user >>>>>>>>> ", user);
-       
-          
-    
+           
             setLoginState(true, user);
             cookie.save('token', token); 
           
@@ -70,10 +77,6 @@ const API = 'http://localhost:7896';
     const validateMyTokenSignup = (token)=> {
         if (token) {
             const user = jwt.decode(token); 
-            console.log("user >>>>>>>>> signupppppppp ", user);
-       
-          
-    
             setLoginState(true, user);
             cookie.save('token', token); 
           
@@ -82,14 +85,32 @@ const API = 'http://localhost:7896';
         }
     }
 
+    const validateMyTokenloginSupervisor = (token)=> {
+        if (token) {
+            const user = jwt.decode(token); 
+            setLoginStateSuper(true, user);
+            cookie.save('token', token); 
+          
+        } else {
+            setLoginStateSuper(false, {});
+        }
+    }
+    const setLoginStateSuper = (isLoggedIn, user) => {
+        setLoggedInSuper(isLoggedIn);
+        setUser(user);
+    }
     const setLoginState = (isLoggedIn, user) => {
         setLoggedIn(isLoggedIn);
         setUser(user);
     }
 
     const logout = () => {
-        // update loggedIn = false
         setLoggedIn(false);
+        setUser({});
+        cookie.remove('token');
+    }
+    const logoutSupervisor = () => {
+        setLoggedInSuper(false);
         setUser({});
         cookie.remove('token');
     }
@@ -100,6 +121,9 @@ const API = 'http://localhost:7896';
         logout: logout,
         signup:signup,
         user: user,
+        loginSupervisor:loginSupervisor,
+        loggedInSuper:loggedInSuper,
+        logoutSupervisor:logoutSupervisor
        
     }
 

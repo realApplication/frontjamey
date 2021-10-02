@@ -26,7 +26,7 @@ function SectionBasics(props) {
     <div className={classes.sections}>
       <div className={classes.container}>
         <div className={classes.title}>
-          <h2>add card here</h2>
+        
           <Row xs={1} md={2} className="g-4">
             {props.bookData[0] &&
               props.bookData[0].map((book, idx) => (
@@ -48,11 +48,15 @@ function SectionBasics(props) {
                         </Button>
                       </When>
                        
-
-                        <Button color="primary" round>
+                      <a href='/somefile.txt' download>
+                      <Button color="primary" round>
+                          
                           Download
                         </Button>
 
+                        
+                  </a>
+                    
                         <Button justIcon round color="primary">
                           <Favorite className={classes.icons} />
                         </Button>

@@ -69,6 +69,7 @@ function SectionCarousel(props) {
                     <h4>
                       <h1 className="slick-icons" />
                       {props.bookData[0]&&props.bookData[0][3].title}
+                      
                     </h4>
                   </div>
                 </div>
