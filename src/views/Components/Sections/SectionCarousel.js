@@ -1,4 +1,4 @@
-import React ,{ useEffect } from "react";
+import React, { useEffect } from "react";
 // react component for creating beautiful carousel
 import Carousel from "react-slick";
 // @material-ui/core components
@@ -40,58 +40,61 @@ function SectionCarousel(props) {
           <GridItem xs={12} sm={12} md={8} className={classes.marginAuto}>
             <Card carousel>
               <Carousel {...settings}>
-                
+
                 <div>
-                  <img src={props.bookData[0]&&props.bookData[0][0].image} alt="First slide" className="slick-image" />
+                  <img src={props.bookData[0] && props.bookData[0][0].image} alt="First slide" className="slick-image" />
                   <div className="slick-caption">
                     <h4>
                       <h1 className="slick-icons" />
-                     {props.bookData[0]&&props.bookData[0][0].title}
+                      {props.bookData[0] && props.bookData[0][0].title}
                     </h4>
                   </div>
                 </div>
                 <div>
                   <img
-                    src={props.bookData[0]&&props.bookData[0][1].image}
+                    src={props.bookData[0] && props.bookData[0][1].image}
                     alt="Second slide"
                     className="slick-image"
                   />
                   <div className="slick-caption">
                     <h4>
                       <h1 className="slick-icons" />
-                      {props.bookData[0]&&props.bookData[0][1].title}
+                      {props.bookData[0] && props.bookData[0][1].title}
                     </h4>
                   </div>
                 </div>
                 <div>
-                  <img src={props.bookData[0]&&props.bookData[0][3].image} alt="Third slide" className="slick-image" />
+                  <img src={props.bookData[0] && props.bookData[0][3].image} alt="Third slide" className="slick-image" />
                   <div className="slick-caption">
                     <h4>
                       <h1 className="slick-icons" />
-                      {props.bookData[0]&&props.bookData[0][3].title}
+                      {props.bookData[0] && props.bookData[0][3].title}
+
                     </h4>
                   </div>
                 </div>
                 <div>
-                  <img src={props.bookData[0]&&props.bookData[0][4].image} alt="Fourth slide" className="slick-image" />
+                  <img src={props.bookData[0] && props.bookData[0][4].image} alt="Fourth slide" className="slick-image" />
                   <div className="slick-caption">
                     <h4>
                       <h1 className="slick-icons" />
-                      {props.bookData[0]&&props.bookData[0][4].title}
+                      {props.bookData[0] && props.bookData[0][4].title}
                     </h4>
                   </div>
                 </div>
                 <div>
-                  <img src={props.bookData[0]&&props.bookData[0][5].image} alt="Fifth slide" className="slick-image" />
+                  <img src={props.bookData[0] && props.bookData[0][5].image} alt="Fifth slide" className="slick-image" />
                   <div className="slick-caption">
                     <h4>
                       <h1 className="slick-icons" />
-                      {props.bookData[0]&&props.bookData[0][5].title}
+                      {props.bookData[0] && props.bookData[0][5].title}
                     </h4>
                   </div>
                 </div>
               </Carousel>
             </Card>
+
+           
           </GridItem>
         </GridContainer>
       </div>

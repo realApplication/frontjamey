@@ -11,21 +11,27 @@ import LoginPage from "./views/LoginPage/LoginPage.js";
 import AboutUs from "./views/AboutUs/AboutUs"
 import SignupPage from "./views/SignupPage/SignupPage"
 import LoginProvider from './views/context';
-var hist = createBrowserHistory();
+import Supervisour from './views/Supervisour/Supervisour'
+import AllBooks from './views/AllBooks/AllBooks'
+let hist = createBrowserHistory();
 
 function App() {
   return (
     <>
       <Router history={hist}>
         <Switch>
+        {/* <Route path="/" exact component={Components} />  */}
+        <Route path="/about-us" component={AboutUs} /> 
         <LoginProvider>
+
           <Route path="/login-page" component={LoginPage} />
           <Route path="/signup-page" component={SignupPage} />
-          <Route path="/about-us" component={AboutUs} />     
+          <Route path="/supervisour" component={Supervisour} />    
+          <Route path="/all-books" component={AllBooks} />   
           <Route path="/main" component={Components} />
         
           </LoginProvider>
-          {/* <Route path="/" component={Components} /> */}
+    
         </Switch>
       </Router>
     </>

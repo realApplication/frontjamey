@@ -1,10 +1,8 @@
-import React, { useEffect ,useContext} from "react";
+import React, { useEffect, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Favorite from "@material-ui/icons/Favorite";
-import GridContainer from "../../../components/Grid/GridContainer";
-import GridItem from "../../../components/Grid/GridItem";
 import Button from "../../../components/CustomButtons/Button";
-import {When} from 'react-if';
+import { When } from 'react-if';
 import { LoginContext } from '../../context';
 import styles from "../../../assets/jss/material-kit-react/views/componentsSections/basicsStyle";
 
@@ -14,8 +12,8 @@ import { Card, Row, Col } from 'react-bootstrap'
 const useStyles = makeStyles(styles);
 
 function SectionBasics(props) {
-  const loginContext =useContext(LoginContext) ;
-  console.log('main context ',loginContext);
+  const loginContext = useContext(LoginContext);
+  console.log('main context ', loginContext);
   const classes = useStyles();
   useEffect(() => {
     props.getRemoteData();
@@ -26,13 +24,13 @@ function SectionBasics(props) {
     <div className={classes.sections}>
       <div className={classes.container}>
         <div className={classes.title}>
-          <h2>add card here</h2>
+
           <Row xs={1} md={2} className="g-4">
             {props.bookData[0] &&
               props.bookData[0].map((book, idx) => (
                 <Col>
                   <Card>
-                    <Card.Img variant="top" src={book.image} />
+                    <Card.Img style={{ height: "27rem" }} variant="top" src={book.image} />
                     <Card.Body >
                       <Card.Title>{book.title}</Card.Title>
 
@@ -40,18 +38,22 @@ function SectionBasics(props) {
                       <Card.Text>
                         {book.description}
                       </Card.Text>
-                    
-                      <div style={{ textAlign: "right" }}>
-                      <When condition={loginContext.loggedIn}>
-                      <Button color="primary" round>
-                          <Favorite className={classes.icons} /> pick book
-                        </Button>
-                      </When>
-                       
 
-                        <Button color="primary" round>
-                          Download
-                        </Button>
+                      <div style={{ textAlign: "right" }}>
+                        <When condition={loginContext.loggedIn}>
+                          <Button color="primary" round>
+                            <Favorite className={classes.icons} /> pick book
+                          </Button>
+                        </When>
+
+                        <a href='/somefile.txt' download>
+                          <Button color="primary" round>
+
+                            Download
+                          </Button>
+
+
+                        </a>
 
                         <Button justIcon round color="primary">
                           <Favorite className={classes.icons} />

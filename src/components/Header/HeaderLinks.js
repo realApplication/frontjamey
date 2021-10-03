@@ -1,8 +1,5 @@
 /*eslint-disable*/
 import React from "react";
-import DeleteIcon from "@material-ui/icons/Delete";
-import IconButton from "@material-ui/core/IconButton";
-// react components for routing our app without refresh
 import { Link } from "react-router-dom";
 
 // @material-ui/core components
@@ -38,11 +35,23 @@ export default function HeaderLinks(props) {
           buttonIcon={Apps}
           dropdownList={[
             <Link to="/main" className={classes.dropdownLink}>
-              All components
+              main
             </Link>,
+             <Link to="/all-books" className={classes.dropdownLink}>
+             All books
+           </Link>,
               <Link to="/main" className={classes.dropdownLink}>
-              Picked book
+              Picked Books
             </Link>,
+            <Link to="/supervisour" className={classes.dropdownLink}>
+            Supervisour  Signin
+          </Link>,
+          <Link to="/favorite-book" className={classes.dropdownLink}>
+          Favorite Book 
+        </Link>,
+        <Link to="/supervisour" className={classes.dropdownLink}>
+        Posts
+      </Link>,
           ]}
         />
       </ListItem>

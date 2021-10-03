@@ -9,9 +9,8 @@ import HeaderLinks from "../../components/Header/HeaderLinks.js";
 
 import styles from "../../assets/jss/material-kit-react/views/landingPage";
 import './aboutus.css'
-import image from "../../assets/img/landing-bg.jpg";
 
-//assets/img/bg7.jpg src/assets/img/landing-bg.jpg
+import image from "../../assets/img/bg9.jpg";
 const useStyles = makeStyles(styles);
 
 export default function LoginPage(props) {
@@ -28,7 +27,7 @@ export default function LoginPage(props) {
                     absolute
                     color="transparent"
                     brand="Jam3y Website"
-                    
+
                     rightLinks={<HeaderLinks />}
                     {...rest}
                 />
@@ -47,7 +46,7 @@ export default function LoginPage(props) {
                         <h1>Our Team</h1>
                         <p>Hover or focus over each card to see the person’s job title slide in and the colour treatment change.</p>
                         <div class="team">
-                            <ul class="auto-grid" role="list">
+                            <ul class="auto-grid" role="list" style={{marginLeft:"1rem"}}>
                                 <li>
                                     <a href="https://github.com/samahAbujwaied" target="_blank" class="profile">
                                         <h2 class="profile__name">Samah Abujwaied</h2>
@@ -90,6 +89,7 @@ export default function LoginPage(props) {
                     </article >
                 </div >
             </div >
+            
         </>
 
     );
