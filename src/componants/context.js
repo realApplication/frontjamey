@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import superagent from 'superagent';
 import base64 from 'base-64';
 import cookie from 'react-cookies';
@@ -8,41 +8,66 @@ import jwt from 'jsonwebtoken';
 export const LoginContext = React.createContext();
 const API = 'http://localhost:3001';
 // 2- create a component that will have the provider
- export default function LoginProvider(props) {
-    
-    const [loggedIn, setLoggedIn] = useState(false);
-    const [user, setUser] = useState({email: ''});
+export default function LoginProvider(props) {
 
+    const [loggedIn, setLoggedIn] = useState(false);
+    const [user, setUser] = useState({ email: '' });
+    const [pickedArr, setpickedArr] = useState({ pickedArr: [] });
+    const [idd, setidd] = useState({ idd:''});
     // token will be saved in the cookies after login
 
     const login = async (email, password) => { // from login form
-     
+
         try {
             const response = await superagent.post(`${API}/signin`).set('authorization', `Basic ${base64.encode(`${email}:${password}`)}`)
             console.log(response.body);
+            console.log('ressss signin id' ,response.body.id);
+            let x =response.body.id
+            setidd(x)
             validateMyToken(response.body.token);
-        } catch(err) {
+       
+            console.log("idddddddddddddddd",idd);
+        } catch (err) {
 
         }
     }
 
-    
-    const signup = async (email,userName, password) => { // from login form
-        let obj ={
-            email : email,
-            userName:userName,
-            password:password
+
+    const signup = async (email, userName, password) => { // from login form
+        let obj = {
+            email: email,
+            userName: userName,
+            password: password
         }
-        console.log("obj",obj);
+        console.log("obj", obj);
         try {
-            const response = await superagent.post(`${API}/signup`,obj)
-            console.log('resssssssssssssss',response.body);
+            const response = await superagent.post(`${API}/signup`, obj)
+            console.log('resssssssssssssss', response.body);
             validateMyTokenSignup(response.body.student.token);
-            console.log(response.body.student.token);
-        } catch(err) {
+            setidd(response.body.id)
+            console.log("signupboddddddddddy",response.body);
+        } catch (err) {
 
         }
     }
+
+    // =============================> pickedcourses
+// let dataArr =[];
+    const getPickedCourses = async () => {
+    console.log("testt id",idd);
+        if (loggedIn) {
+            const token = cookie.load("token");
+            let response = await superagent
+                .get(`http://localhost:3001/pickedbook/${idd}`)
+                .set("authorization", `Bearer ${token}`);
+            console.log('response11111111111', response.body);
+            let dataArr= response.body
+             console.log("dataaArr11111111",dataArr);
+            setpickedArr(dataArr);
+            console.log('pickedArrpickedArr1111111111111',pickedArr);
+        }
+    }
+
 
 
     // initial render
@@ -53,30 +78,30 @@ const API = 'http://localhost:3001';
         validateMyToken(myTokenCookie);
     }, []);
 
-    const validateMyToken = (token)=> {
+    const validateMyToken = (token) => {
         if (token) {
-            const user = jwt.decode(token); 
+            const user = jwt.decode(token);
             console.log("user >>>>>>>>> ", user);
-       
-          
-    
+
+
+
             setLoginState(true, user);
-            cookie.save('token', token); 
-          
+            cookie.save('token', token);
+
         } else {
             setLoginState(false, {});
         }
     }
-    const validateMyTokenSignup = (token)=> {
+    const validateMyTokenSignup = (token) => {
         if (token) {
-            const user = jwt.decode(token); 
+            const user = jwt.decode(token);
             console.log("user >>>>>>>>> signupppppppp ", user);
-       
-          
-    
+
+
+
             setLoginState(true, user);
-            cookie.save('token', token); 
-          
+            cookie.save('token', token);
+
         } else {
             setLoginState(false, {});
         }
@@ -95,12 +120,16 @@ const API = 'http://localhost:3001';
     }
 
     const state = {
-        loggedIn : loggedIn,
+        loggedIn: loggedIn,
         login: login,
         logout: logout,
-        signup:signup,
+        signup: signup,
         user: user,
-       
+        getPickedCourses: getPickedCourses,
+        pickedArr:pickedArr,
+        idd:idd
+
+
     }
 
 
@@ -109,4 +138,4 @@ const API = 'http://localhost:3001';
             {props.children}
         </LoginContext.Provider>
     )
- }
+}

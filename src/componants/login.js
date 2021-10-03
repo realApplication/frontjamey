@@ -1,17 +1,19 @@
 import React from 'react';
-import {When} from 'react-if';
+import {When,If} from 'react-if';
 import { LoginContext } from './context.js';
 
 export default class Login extends React.Component {
     
     static contextType = LoginContext;
 
+
     constructor(props) {
         super(props);
         this.state = {
             userame: '',
             email:'',
-            password: ''
+            password: '',
+            pickedArrshow:false
         };
     }
 
@@ -24,15 +26,29 @@ export default class Login extends React.Component {
         e.preventDefault();
         // use login context to perform login operation
         this.context.login(this.state.username, this.state.password);
-
+   
     }
     handleSubmitSignup = e => {
         e.preventDefault();
         // use login context to perform login operation
         this.context.signup(this.state.email,this.state.username, this.state.password);
+  
         console.log("this.state.email",this.state.email);
 
     }
+
+    handlePicked = e => {
+        e.preventDefault();
+        // use login context to perform login operation
+        this.context.getPickedCourses();
+        this.setState({
+            pickedArrshow:true
+        })
+   
+    }
+    // componentDidMount =()=>{
+    //     this.context.getPickedCourses();
+    // }
 
     render() {
         return (
@@ -60,7 +76,34 @@ export default class Login extends React.Component {
                 <When condition={this.context.loggedIn}>
                     <div>{this.context.user.email}</div>
                     <button onClick={this.context.logout}>Logout</button>
+                   
                 </When>
+
+                <button onClick={this.handlePicked} > pickedbook</button>
+                <h1> pickedbook</h1>
+
+{/* 
+                   
+        { this.state.pickedArrshow && this.context.pickedArr.map((item, idx) => (
+        <>
+          <div key={idx}>
+            <h6>Todo Item: {item.title}</h6>
+            <p>
+              <small>Assigned to: {item.author}</small>
+            </p>
+            <p>
+              <small>userId: {item.userId}</small>
+            </p>
+
+            <br />
+            <hr />
+          </div>
+        </>
+      ))}  */}
+
+            
+
+
             </>
             
         )

@@ -3,6 +3,7 @@ import './App.css';
 // import Main from './componants/main'
 import LoginProvider from './componants/context';
 import Login from './componants/login';
+import PickedCourses from './componants/PickedCourses';
 // import Footer from './componants/footer'
 
 function App() {
@@ -12,9 +13,12 @@ function App() {
 <LoginProvider>
 <Login/>
 
+{/* <PickedCourses/> */}
 {/* <Auth/ > */}
   
 </LoginProvider>
+
+
     {/* <Header/> */}
     {/* <Main /> */}
     {/* <Footer/> */}
