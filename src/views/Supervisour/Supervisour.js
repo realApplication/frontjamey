@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext,useEffect } from 'react';
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -33,8 +33,10 @@ export default function LoginPage(props) {
 
   const loginContext = useContext(LoginContext);
   console.log('loginContext-------------->supervisour', loginContext);
-
-  const [userName, setUserName] = React.useState("");;
+  useEffect(() => {
+    loginContext.setLoginbtn(false);
+}, []);
+  const [userName, setUserName] = React.useState("");
 
   const [password, setPassword] = React.useState("");
 

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext ,useEffect} from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -35,7 +35,9 @@ export default function LoginPage(props) {
   const [userName, setUserName] = React.useState("");;
   const [email, setEmail] = React.useState("");;
   const [password, setPassword] = React.useState("");
-
+  useEffect(() => {
+    loginContext.setLoginbtn(false);
+}, []);
 
   function handleChangeUserName(e) {
     // this.setState({ [e.target.name]: e.target.value });
@@ -63,7 +65,7 @@ export default function LoginPage(props) {
     // console.log("this.state.email",this.state.email);
 
   }
-
+   
   const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
   setTimeout(function () {
     setCardAnimation("");
