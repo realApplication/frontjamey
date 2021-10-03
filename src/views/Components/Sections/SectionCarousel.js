@@ -20,10 +20,7 @@ const useStyles = makeStyles(styles);
 
 function SectionCarousel(props) {
   // console.log('sammmmmmmmmm',props.bookData[0][0].title);
-  useEffect(() => {
-    props.getRemoteData();
-
-  }, []);
+ 
   const classes = useStyles();
   const settings = {
     dots: true,

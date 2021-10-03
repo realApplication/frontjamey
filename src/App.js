@@ -13,6 +13,7 @@ import SignupPage from "./views/SignupPage/SignupPage"
 import LoginProvider from './views/context';
 import Supervisour from './views/Supervisour/Supervisour'
 import AllBooks from './views/AllBooks/AllBooks'
+import PickedBook from './views/PickedBook/BickedBook'
 let hist = createBrowserHistory();
 
 function App() {
@@ -21,13 +22,15 @@ function App() {
       <Router history={hist}>
         <Switch>
         {/* <Route path="/" exact component={Components} />  */}
-        <Route path="/about-us" component={AboutUs} /> 
+      
         <LoginProvider>
 
           <Route path="/login-page" component={LoginPage} />
           <Route path="/signup-page" component={SignupPage} />
           <Route path="/supervisour" component={Supervisour} />    
-          <Route path="/all-books" component={AllBooks} />   
+          <Route path="/all-books" component={AllBooks} />  
+          <Route path="/picked-book" component={PickedBook} />  
+          <Route path="/about-us" component={AboutUs} /> 
           <Route path="/main" component={Components} />
         
           </LoginProvider>

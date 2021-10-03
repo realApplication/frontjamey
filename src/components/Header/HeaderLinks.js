@@ -1,12 +1,15 @@
 /*eslint-disable*/
-import React from "react";
+import React ,{useContext} from "react";
 import { Link } from "react-router-dom";
+import {When} from 'react-if';
 
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import Tooltip from "@material-ui/core/Tooltip";
+import GridItem from "../../components/Grid/GridItem";
+import { LoginContext } from '../../views/context';
 
 // @material-ui/icons
 import { Apps, CloudDownload } from "@material-ui/icons";
@@ -21,13 +24,15 @@ import styles from "../../assets/jss/material-kit-react/components/headerLinksSt
 const useStyles = makeStyles(styles);
 
 export default function HeaderLinks(props) {
+  const loginContext = useContext(LoginContext);
+  console.log('loginbtn-------------------------------<',loginContext);
   const classes = useStyles();
   return (
     <List className={classes.list}>
       <ListItem className={classes.listItem}>
         <CustomDropdown
           noLiPadding
-          buttonText="Components"
+          buttonText="All"
           buttonProps={{
             className: classes.navLink,
             color: "transparent",
@@ -40,15 +45,13 @@ export default function HeaderLinks(props) {
              <Link to="/all-books" className={classes.dropdownLink}>
              All books
            </Link>,
-              <Link to="/main" className={classes.dropdownLink}>
+              <Link to="/picked-book" className={classes.dropdownLink}>
               Picked Books
             </Link>,
             <Link to="/supervisour" className={classes.dropdownLink}>
             Supervisour  Signin
           </Link>,
-          <Link to="/favorite-book" className={classes.dropdownLink}>
-          Favorite Book 
-        </Link>,
+          
         <Link to="/supervisour" className={classes.dropdownLink}>
         Posts
       </Link>,
@@ -56,57 +59,41 @@ export default function HeaderLinks(props) {
         />
       </ListItem>
     
-      <ListItem className={classes.listItem}>
+      <ListItem className={classes.listItem} style={{marginTop:"-25px"}}>
         <Tooltip
           id="instagram-twitter"
           title="Follow us on twitter"
           placement={window.innerWidth > 959 ? "top" : "left"}
           classes={{ tooltip: classes.tooltip }}
         >
-          <Button
-            href="https://twitter.com/CreativeTim?ref=creativetim"
-            target="_blank"
-            color="transparent"
-            className={classes.navLink}
-          >
-            <i className={classes.socialIcons + " fab fa-twitter"} />
-          </Button>
+         <GridItem md={12}>
+          <When condition={!loginContext.loggedIn && loginContext.loginbtn}>
+            <Link to={"/login-page"} className={classes.link}>
+              <div id="buttons">
+
+                <div xs={12} sm={12} md={8} class="group">
+                  <button style={{ marginRight: "0rem" }} class="blam"> <i className="fas fa-sign-in-alt"> Login </i></button>
+                </div>
+
+              </div>
+            </Link>
+          </When>
+          <When condition={loginContext.loggedIn}>
+            <Link to={"/main"} className={classes.link}>
+              <div id="buttons">
+
+                <div xs={12} sm={12} md={8} class="group">
+                  <button onClick={loginContext.logout} style={{ marginRight: "0rem" }} class="blam"> <i className="fas fa-sign-in-alt"> LogOut </i></button>
+                </div>
+
+              </div>
+            </Link>
+          </When>
+        </GridItem>
         </Tooltip>
       </ListItem>
-      <ListItem className={classes.listItem}>
-        <Tooltip
-          id="instagram-facebook"
-          title="Follow us on facebook"
-          placement={window.innerWidth > 959 ? "top" : "left"}
-          classes={{ tooltip: classes.tooltip }}
-        >
-          <Button
-            color="transparent"
-            href="https://www.facebook.com/CreativeTim?ref=creativetim"
-            target="_blank"
-            className={classes.navLink}
-          >
-            <i className={classes.socialIcons + " fab fa-facebook"} />
-          </Button>
-        </Tooltip>
-      </ListItem>
-      <ListItem className={classes.listItem}>
-        <Tooltip
-          id="instagram-tooltip"
-          title="Follow us on instagram"
-          placement={window.innerWidth > 959 ? "top" : "left"}
-          classes={{ tooltip: classes.tooltip }}
-        >
-          <Button
-            color="transparent"
-            href="https://www.instagram.com/CreativeTimOfficial?ref=creativetim"
-            target="_blank"
-            className={classes.navLink}
-          >
-            <i className={classes.socialIcons + " fab fa-instagram"} />
-          </Button>
-        </Tooltip>
-      </ListItem>
+  
+     
     </List>
   );
 }
