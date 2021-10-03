@@ -12,8 +12,9 @@ export default function LoginProvider(props) {
 
     const [loggedIn, setLoggedIn] = useState(false);
     const [user, setUser] = useState({ email: '' });
-    const [pickedArr, setpickedArr] = useState({ pickedArr: [] });
-    const [idd, setidd] = useState({ idd:''});
+    const [pickedArr, setPickedArr] = useState([]);
+    const [idd, setIdd] = useState( 0);
+  
     // token will be saved in the cookies after login
 
     const login = async (email, password) => { // from login form
@@ -23,7 +24,8 @@ export default function LoginProvider(props) {
             console.log(response.body);
             console.log('ressss signin id' ,response.body.id);
             let x =response.body.id
-            setidd(x)
+            setIdd(x)
+            localStorage.setItem("id", JSON.stringify(x));
             validateMyToken(response.body.token);
        
             console.log("idddddddddddddddd",idd);
@@ -44,7 +46,7 @@ export default function LoginProvider(props) {
             const response = await superagent.post(`${API}/signup`, obj)
             console.log('resssssssssssssss', response.body);
             validateMyTokenSignup(response.body.student.token);
-            setidd(response.body.id)
+            setIdd(response.body.id)
             console.log("signupboddddddddddy",response.body);
         } catch (err) {
 
@@ -54,29 +56,26 @@ export default function LoginProvider(props) {
     // =============================> pickedcourses
 // let dataArr =[];
     const getPickedCourses = async () => {
-    console.log("testt id",idd);
+    console.log("testt id   123123123123123",idd);
+
+
         if (loggedIn) {
+          let idk = JSON.parse(localStorage.getItem('id'))
             const token = cookie.load("token");
             let response = await superagent
-                .get(`http://localhost:3001/pickedbook/${idd}`)
+                .get(`http://localhost:3001/pickedbook/${(idk)}`)
                 .set("authorization", `Bearer ${token}`);
             console.log('response11111111111', response.body);
-            let dataArr= response.body
-             console.log("dataaArr11111111",dataArr);
-            setpickedArr(dataArr);
-            console.log('pickedArrpickedArr1111111111111',pickedArr);
+            let dataArr= await response.body
+             console.log("dataaArr11111111",dataArr);////done
+             setPickedArr(dataArr);
+             console.log("pickedArr",pickedArr);
+             localStorage.setItem("data", JSON.stringify(dataArr));
+          
+            console.log('pickedArrpickedArr1111111111111',dataArr);// have wrong
         }
     }
 
-
-
-    // initial render
-    useEffect(() => {
-        const myTokenCookie = cookie.load('token'); // read the cookie from browser
-        console.log("myTokenCookie: ", myTokenCookie)
-        console.log("initial render here !!");
-        validateMyToken(myTokenCookie);
-    }, []);
 
     const validateMyToken = (token) => {
         if (token) {
@@ -92,6 +91,16 @@ export default function LoginProvider(props) {
             setLoginState(false, {});
         }
     }
+    // initial render
+    useEffect(() => {
+        const myTokenCookie = cookie.load('token'); // read the cookie from browser
+        console.log("myTokenCookie: ", myTokenCookie)
+        console.log("initial render here !!");
+        validateMyToken(myTokenCookie);
+       
+    }, []);
+
+ 
     const validateMyTokenSignup = (token) => {
         if (token) {
             const user = jwt.decode(token);
@@ -117,6 +126,7 @@ export default function LoginProvider(props) {
         setLoggedIn(false);
         setUser({});
         cookie.remove('token');
+        localStorage.clear();
     }
 
     const state = {
