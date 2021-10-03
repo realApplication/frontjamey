@@ -106,6 +106,7 @@ function AllBooks(props) {
                             ))
                         }
                     </Row>
+                    
                     <Footer whiteFont />
                 </div >
             </div >

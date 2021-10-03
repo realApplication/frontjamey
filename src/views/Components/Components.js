@@ -88,7 +88,14 @@ export default function Components(props) {
           </When>
           <SectionCarousel />
           <div style={{textAlign:"center"}}>
-          <p >Discription </p>
+          <p >Discription 
+
+
+
+
+
+            
+          </p>
           <a target="_blank" href='../../assets/pdf/book.pdf' attributes-list download>Click to download</a>
           </div>
           

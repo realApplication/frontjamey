@@ -5,7 +5,6 @@ import { makeStyles } from "@material-ui/core/styles";
 // core components
 import Header from "../../components/Header/Header.js";
 import HeaderLinks from "../../components/Header/HeaderLinks.js";
-import Footer from "../../components/Footer/Footer";
 
 
 import styles from "../../assets/jss/material-kit-react/views/landingPage";
@@ -47,7 +46,7 @@ export default function LoginPage(props) {
                         <h1>Our Team</h1>
                         <p>Hover or focus over each card to see the person’s job title slide in and the colour treatment change.</p>
                         <div class="team">
-                            <ul class="auto-grid" role="list">
+                            <ul class="auto-grid" role="list" style={{marginLeft:"1rem"}}>
                                 <li>
                                     <a href="https://github.com/samahAbujwaied" target="_blank" class="profile">
                                         <h2 class="profile__name">Samah Abujwaied</h2>
@@ -88,10 +87,9 @@ export default function LoginPage(props) {
                             </ul >
                         </div >
                     </article >
-                    <Footer whiteFont />
                 </div >
             </div >
-       
+            
         </>
 
     );
