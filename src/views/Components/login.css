@@ -1,0 +1,75 @@
+@import url(https://fonts.googleapis.com/css?family=Droid+Sans:700);
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			transition: all .1s;
+		}
+	
+		.group{
+			text-align: right;
+			margin: 20px auto;
+		}
+		.group .blam{
+			margin-top: 10px;
+		}
+		.blam{
+/*			box-sizing: border-box;*/
+			background: NONE;
+			border: none;
+			outline: none;
+			border-radius: 3px;
+			padding: 10px 40px;
+			color:white;
+			text-transform: uppercase;
+			font-weight: 700;
+			text-shadow: 0 1px 3px rgba(143, 143, 143, 0.41);
+			box-shadow: 0 3px 0 0 #cccccc;
+			border:3px solid transparent;
+			
+		
+			animation: pulse 1s linear infinite alternate;
+			-webkit-animation: pulse 1s linear infinite alternate;
+		}
+		.active,
+		.blam:active{
+			background-image: linear-gradient(rgba(0,0,0,.1) 13%, transparent 13%,transparent);
+			box-shadow: 0 1px 0 0 #383838;
+			color: rgba(0, 0, 0,.45);
+			text-shadow: none;
+			
+			
+			-webkit-animation-play-state: paused; 
+    	animation-play-state: paused;
+		}
+		.blam:focus,
+		.blam:hover{
+			-webkit-animation-play-state: paused; 
+    	animation-play-state: paused;
+		}
+		
+		
+		.blam:focus,
+		.blam:hover{
+			background-color:#68588f;
+		}
+		.blam{
+			background-color: #68588f;
+			border-color: #68588f;
+		}
+		
+   
+		
+		
+		
+		@-webkit-keyframes pulse {
+			100% {
+				transform: translateY(6.9px); 
+			} 
+		}
+
+		@keyframes pulse {
+			100% {
+				transform: translateY(6.9px); 
+			} 
+		}
