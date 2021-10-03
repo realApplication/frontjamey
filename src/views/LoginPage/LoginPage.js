@@ -19,6 +19,7 @@ import CardBody from "../../components/Card/CardBody.js";
 import CardHeader from "../../components/Card/CardHeader.js";
 import CardFooter from "../../components/Card/CardFooter.js";
 import CustomInput from "../../components/CustomInput/CustomInput.js";
+import { Redirect } from 'react-router-dom';
 
 import styles from "../../assets/jss/material-kit-react/views/landingPage";
 import { When } from 'react-if';
@@ -28,16 +29,16 @@ import { LoginContext } from '../context';
 import image from "../../assets/img/bg7.jpg";
 const useStyles = makeStyles(styles);
 
+
 export default function LoginPage(props) {
 
 
   const loginContext = useContext(LoginContext);
-  // console.log('loginContext', loginContext);
+  console.log('loginContext', loginContext);
 
   const [userName, setUserName] = React.useState("");;
-  const [email, setEmail] = React.useState("");;
   const [password, setPassword] = React.useState("");
-
+ 
   function handleChangeUserName(e) {
     // console.log('user name ', e.target.value);
     setUserName(e.target.value)
@@ -49,11 +50,12 @@ export default function LoginPage(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
+
     // use login context to perform login operation
     loginContext.login(userName, password);
 
   }
- 
+
   const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
   setTimeout(function () {
     setCardAnimation("");
@@ -136,9 +138,9 @@ export default function LoginPage(props) {
                     />
                   </CardBody>
                   <CardFooter className={classes.cardFooter}>
-                 
-                 
-                    <Button   to={"/main"} type="submit" simple color="primary" style={{marginTop:"-100px",marginLeft:"50px"}} size="lg">
+
+
+                    <Button to={"/main"} type="submit" simple color="primary" style={{ marginTop: "-100px", marginLeft: "50px" }} size="lg">
                       <div id="buttons">
 
                         <div xs={12} sm={12} md={8} class="group">
@@ -146,15 +148,20 @@ export default function LoginPage(props) {
                         </div>
 
                       </div>
+                      {
+                        loginContext.loggedIn && 
+                        <Redirect to="/main" />
+                      }
                     </Button>
-                   
+
                     <Link to={"/signup-page"} className={classes.link}>
-                      <Button simple color="primary" size="lg" style={{marginTop:"40px" ,marginLeft :"-230px"}} >
-                        If You have not account 
+                      <Button simple color="primary" size="lg" style={{ marginTop: "40px", marginLeft: "-230px" }} >
+                        If You have not account
                       </Button>
-  
+
                     </Link>
                   </CardFooter>
+              
                 </form>
               </Card>
             </GridItem>

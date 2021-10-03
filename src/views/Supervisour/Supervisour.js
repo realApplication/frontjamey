@@ -87,8 +87,8 @@ export default function LoginPage(props) {
       >
         <div className={classes.container}>
           <GridContainer justify="center" >
-            <GridItem  xs={12} sm={12} md={4} style={{ marginTop: "80px" }}>
-              <Card style={{backgroundColor:"#FFE4C4"}} className={classes[cardAnimaton]}>
+            <GridItem xs={12} sm={12} md={4} style={{ marginTop: "80px" }}>
+              <Card style={{ backgroundColor: "#FFE4C4" }} className={classes[cardAnimaton]}>
                 <form onSubmit={handleSubmit} className={classes.form}>
                   <CardHeader color="primary" className={classes.cardHeader}>
                     <div >
@@ -157,16 +157,16 @@ export default function LoginPage(props) {
 
                     <Link to={"/signup-page"} className={classes.link}>
                       <Button simple color="primary" size="lg" style={{ marginTop: "40px", marginLeft: "-230px" }} >
-                       
+
                       </Button>
-                      <When condition={loginContext.loggedInSuper}>
-                       
-                      <Button onClick={logout} simple color="primary" size="lg" style={{ marginTop: "40px", marginLeft: "-130px" }} >
-                        Logout supervisour
-                      </Button>
-                        
-                      
-                      </When>
+
+                      {loginContext.loggedInSuper &&
+                        <Button onClick={logout} simple color="primary" size="lg" style={{ marginTop: "40px", marginLeft: "-130px" }} >
+                          Logout supervisour
+                        </Button>
+
+                      }
+
                     </Link>
                   </CardFooter>
                 </form>

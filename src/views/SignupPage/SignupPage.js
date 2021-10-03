@@ -21,6 +21,7 @@ import CardFooter from "../../components/Card/CardFooter.js";
 import CustomInput from "../../components/CustomInput/CustomInput.js";
 import { LoginContext } from '../context.js';
 import styles from "../../assets/jss/material-kit-react/views/landingPage";
+import { Redirect } from 'react-router-dom';
 
 import image from "../../assets/img/bg7.jpg";
 //assets/img/bg7.jpg
@@ -163,7 +164,10 @@ export default function LoginPage(props) {
                         <div xs={12} sm={12} md={8} >
                           <a style={{ marginRight: "0rem" }} class="blam"> SignUp</a>
                         </div>
-                          {/* {loginContext.loggedIn && alert('You are successfully registar!')} */}
+                        {
+                        loginContext.loggedIn && 
+                        <Redirect to="/main" />
+                      }
                       </div>
                     </Button>
                   

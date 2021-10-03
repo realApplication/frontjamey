@@ -17,7 +17,7 @@ const API = 'http://localhost:7896';
     // token will be saved in the cookies after login
 
     const login = async (email, password) => { // from login form
-    //  console.log('sam------------------------------',email,password);
+     console.log('sam------------------------------',email,password);
         try {
             const response = await superagent.post(`${API}/signin`).set('authorization', `Basic ${base64.encode(`${email}:${password}`)}`)
             console.log(response.body);
@@ -134,3 +134,6 @@ const API = 'http://localhost:7896';
         </LoginContext.Provider>
     )
  }
+
+
+

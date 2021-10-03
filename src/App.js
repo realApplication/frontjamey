@@ -12,7 +12,8 @@ import AboutUs from "./views/AboutUs/AboutUs"
 import SignupPage from "./views/SignupPage/SignupPage"
 import LoginProvider from './views/context';
 import Supervisour from './views/Supervisour/Supervisour'
-var hist = createBrowserHistory();
+import AllBooks from './views/AllBooks/AllBooks'
+let hist = createBrowserHistory();
 
 function App() {
   return (
@@ -20,11 +21,13 @@ function App() {
       <Router history={hist}>
         <Switch>
         {/* <Route path="/" exact component={Components} />  */}
+        <Route path="/about-us" component={AboutUs} /> 
         <LoginProvider>
+
           <Route path="/login-page" component={LoginPage} />
           <Route path="/signup-page" component={SignupPage} />
           <Route path="/supervisour" component={Supervisour} />    
-          <Route path="/about-us" component={AboutUs} />     
+          <Route path="/all-books" component={AllBooks} />   
           <Route path="/main" component={Components} />
         
           </LoginProvider>

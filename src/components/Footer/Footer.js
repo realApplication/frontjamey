@@ -37,7 +37,7 @@ export default function Footer(props) {
                 className={classes.block}
 
               >
-                Creative Tim
+                Creative Team
               </a>
             </ListItem>
             <ListItem className={classes.inlineBlock}>

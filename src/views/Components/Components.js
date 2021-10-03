@@ -14,7 +14,7 @@ import GridItem from "../../components/Grid/GridItem";
 import Button from "../../components/CustomButtons/Button";
 import Parallax from "../../components/Parallax/Parallax";
 import {When} from 'react-if';
-
+// import Pdf from '../../assets/pdf/book.pdf'
 // sections for this page
 import HeaderLinks from "../../components/Header/HeaderLinks";
 import SectionBasics from "./Sections/SectionBasics.js";
@@ -26,6 +26,9 @@ import { LoginContext } from '../context';
 const useStyles = makeStyles(styles);
 
 export default function Components(props) {
+  function onResumeClick(){
+    window.open('../../assets/pdf/book.pdf');
+  }
   const loginContext =useContext(LoginContext) ;
   const classes = useStyles();
   const { ...rest } = props;
@@ -86,7 +89,7 @@ export default function Components(props) {
           <SectionCarousel />
           <div style={{textAlign:"center"}}>
           <p >Discription </p>
-          <a  href='book.pdf' attributes-list download>Click to download</a>
+          <a target="_blank" href='../../assets/pdf/book.pdf' attributes-list download>Click to download</a>
           </div>
           
         </GridItem>

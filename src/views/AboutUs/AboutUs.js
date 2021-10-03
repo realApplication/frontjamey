@@ -5,13 +5,13 @@ import { makeStyles } from "@material-ui/core/styles";
 // core components
 import Header from "../../components/Header/Header.js";
 import HeaderLinks from "../../components/Header/HeaderLinks.js";
+import Footer from "../../components/Footer/Footer";
 
 
 import styles from "../../assets/jss/material-kit-react/views/landingPage";
 import './aboutus.css'
-import image from "../../assets/img/landing-bg.jpg";
 
-//assets/img/bg7.jpg src/assets/img/landing-bg.jpg
+import image from "../../assets/img/bg9.jpg";
 const useStyles = makeStyles(styles);
 
 export default function LoginPage(props) {
@@ -28,7 +28,7 @@ export default function LoginPage(props) {
                     absolute
                     color="transparent"
                     brand="Jam3y Website"
-                    
+
                     rightLinks={<HeaderLinks />}
                     {...rest}
                 />
@@ -88,8 +88,10 @@ export default function LoginPage(props) {
                             </ul >
                         </div >
                     </article >
+                    <Footer whiteFont />
                 </div >
             </div >
+       
         </>
 
     );
