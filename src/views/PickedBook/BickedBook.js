@@ -16,10 +16,7 @@ import Favorite from "@material-ui/icons/Favorite";
 import { connect } from 'react-redux';
 import { getRemoteData } from '../../store/actions'
 import styles from "../../assets/jss/material-kit-react/views/landingPage";
-// import './form.css'
 
-
-// import './form.css'
 import '../AllBooks/form.css'
 
 import image from "../../assets/img/bg444.jpg";
@@ -30,14 +27,25 @@ function PickedBook(props) {
     const loginContext = useContext(LoginContext);
     const [books, setBooks] = React.useState([]);
     useEffect(() => {
-
         props.getRemoteData();
         loginContext.getPickedCourses();
         loginContext.setLoginbtn(true);
         setBooks(JSON.parse(localStorage.getItem('data')));
 
     }, []);
-    console.log('boooookkkkkks ------>', books);
+
+    const handleAskHelp= async(e)=>{
+        e.preventDefault();
+       let data =  await loginContext.handleAskHelp();
+       alert(data);
+       console.log('data ------------>',data);
+    }
+    const volunteer=async(e,book)=>{
+        e.preventDefault();
+        let data = await loginContext.volunteer(book.title);
+        alert(data);
+
+    }
     const classes = useStyles();
     const { ...rest } = props;
     return (
@@ -60,7 +68,7 @@ function PickedBook(props) {
             >
                 <div className={classes.container}>
                     <GridContainer justify="center" >
-                        <h1 style={{ paddingTop: "140px", fontFamily: "monospace", marginBottom: '20px' }}>Picked Books</h1>
+                        <h1  style={{ paddingTop: "140px", fontFamily: "monospace", marginBottom: '20px' }}>Picked Books</h1>
                         <Row xs={1} md={2} className="g-4"   >
 
                             {
@@ -83,13 +91,13 @@ function PickedBook(props) {
                                                         <li>Author : {book.author}</li>
                                                         <div style={{ textAlign: "center", marginLeft: "-60px" }}>
                                                             <When condition={loginContext.loggedIn}>
-                                                                <Button color="warning" round>
+                                                                <Button  onClick={handleAskHelp} color="warning" round>
                                                                     <Favorite className={classes.icons} /> Ask For Help
                                                                 </Button>
                                                             </When>
                                                             <br />
 
-                                                            <Button color="danger" round>
+                                                            <Button onClick={(e)=>volunteer(e,book)} color="danger" round>
 
                                                                 Volunteer
                                                             </Button>

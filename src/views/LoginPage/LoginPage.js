@@ -136,12 +136,12 @@ export default function LoginPage(props) {
               <div class="overlay-panel overlay-left  backgroungg">
                 <h1>Welcome Back!</h1>
                 <p>To keep connected with us please login with your personal info</p>
-                <button class="ghost" id="signIn">Sign In</button>
+                <button class="ghost" id="signInn">Sign In</button>
               </div>
               <div className="overlay-panel overlay-right  backgroung" >
                 <h1>Hello, Student!</h1>
                 <p>Enter your personal details and start journey with us</p>
-                <button class="ghost" id="signUp">Sign Up</button>
+                <button class="ghost" id="signUpp"> Sign Up </button>
               </div>
             </div>
           </div>

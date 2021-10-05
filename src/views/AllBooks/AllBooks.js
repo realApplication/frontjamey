@@ -28,11 +28,12 @@ function AllBooks(props) {
         props.getRemoteData();
 
     }, []);
-    const addToFav = (e, book) => {
+    const handlePicked =( e ,id)=> {
+        console.log('------000000000-----',id);
         e.preventDefault();
-        loginContext.addToFavBook(book);
-    };
-
+        loginContext.postPickedCourses(id);
+       
+      }
     const classes = useStyles();
     const { ...rest } = props;
     return (
@@ -78,7 +79,7 @@ function AllBooks(props) {
                                                         <li>Author : {book.author}</li>
                                                         <div style={{ textAlign: "center", marginLeft: "-60px" }}>
                                                             <When condition={loginContext.loggedIn}>
-                                                                <Button color="warning" round>
+                                                                <Button onClick={(e)=>handlePicked(e,book.id)} color="warning" round>
                                                                     <Favorite className={classes.icons} /> pick book
                                                                 </Button>
                                                             </When>
@@ -92,7 +93,7 @@ function AllBooks(props) {
 
                                                             </a>
                                                             <br />
-                                                            <Button onClick={(e) => addToFav(e, book)} justIcon round color="danger">
+                                                            <Button  justIcon round color="danger">
                                                                 <Favorite className={classes.icons} />
                                                             </Button>
 

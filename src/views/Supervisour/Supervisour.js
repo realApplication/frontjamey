@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import Header from "../../components/Header/Header.js";
 import HeaderLinks from "../../components/Header/HeaderLinks.js";
 import Footer from "../../components/Footer/Footer.js";
+import { Redirect } from 'react-router-dom';
 import GridContainer from "../../components/Grid/GridContainer.js";
 import GridItem from "../../components/Grid/GridItem.js";
 import Button from "../../components/CustomButtons/Button.js";
@@ -102,16 +103,18 @@ export default function LoginPage(props) {
               <a href="#">Forgot your password?</a>
                <button to={"/main"} type="submit" simple  size="lg">
                      LogIn
-                      {/* {
-                        loginContext.loggedIn && 
-                        <Redirect to="/main" />
-                      } */}
-                      {loginContext.loggedInSuper &&
+                      
+                      {
+                        loginContext.loggedInSuper && 
+                        <Redirect to="/super-page" />
+                      }
+
+                      {/* {loginContext.loggedInSuper &&
                         <Button onClick={logout} simple color="primary" size="lg" style={{ marginTop: "40px", marginLeft: "-130px" }} >
                           Logout supervisour
                         </Button>
 
-                      }
+                      } */}
                     </button> 
             </form>
           </div>
