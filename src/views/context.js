@@ -34,9 +34,10 @@ export default function LoginProvider(props) {
     }
     const loginSupervisor = async (email, password) => { // from login form
         // console.log('loginSupervisor------------------------------',email,password);
+        console.log('email ------------>',email ,'password------------->',password);
         try {
             const response = await superagent.post(`${API}/v1/signin`).set('authorization', `Basic ${base64.encode(`${email}:${password}`)}`)
-            //    console.log('login supervisor---->',response.body.supervisor.token);
+               console.log('login supervisor---->',response.body.supervisor.token);
             validateMyTokenloginSupervisor(response.body.supervisor.token);
             //    console.log('on try');
         } catch (err) {

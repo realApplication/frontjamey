@@ -12,11 +12,12 @@ import Button from "@material-ui/core/Button";
 import Hidden from "@material-ui/core/Hidden";
 import Drawer from "@material-ui/core/Drawer";
 import { Link } from "react-router-dom";
-
+import image from "../../assets/img/logo.png";
 // @material-ui/icons
 import Menu from "@material-ui/icons/Menu";
 // core components
 import styles from "../../assets/jss/material-kit-react/components/headerStyle";
+// import styles from "../../assets/img/logo.png";
 
 const useStyles = makeStyles(styles);
 
@@ -45,7 +46,7 @@ export default function Header(props) {
         .classList.remove(classes[color]);
       document.body
         .getElementsByTagName("header")[0]
-        .classList.add(classes[changeColorOnScroll.color]);
+        .classList.add(classes['white']);
     } else {
       document.body
         .getElementsByTagName("header")[0]
@@ -63,9 +64,10 @@ export default function Header(props) {
     [classes.fixed]: fixed,
   });
   const brandComponent = <Button  className={classes.title}>
-    <Link to="/main" style={{color:"#1912a6",fontSize:"25px",textShadow:"5px 5px 5px white" , }} className={classes.dropdownLink}>
-    {brand}
-            </Link>
+    <Link to="/main">
+    <img src='https://www.pinclipart.com/picdir/big/523-5238864_book-cover-outline-clip-art-src-data-transparent.png'width='100px'height='70px'/>
+    </Link>
+   
    </Button>;
   return (
     <AppBar className={appBarClasses}>
@@ -134,12 +136,6 @@ Header.propTypes = {
   brand: PropTypes.string,
   fixed: PropTypes.bool,
   absolute: PropTypes.bool,
-  // this will cause the sidebar to change the color from
-  // props.color (see above) to changeColorOnScroll.color
-  // when the window.pageYOffset is heigher or equal to
-  // changeColorOnScroll.height and then when it is smaller than
-  // changeColorOnScroll.height change it back to
-  // props.color (see above)
   changeColorOnScroll: PropTypes.shape({
     height: PropTypes.number.isRequired,
     color: PropTypes.oneOf([

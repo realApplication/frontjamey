@@ -20,7 +20,7 @@ const headerStyle = {
     marginBottom: "20px",
     color: "#555",
     width: "100%",
-    backgroundColor: "#fff",
+    backgroundColor: "black",
     boxShadow:
       "0 4px 18px 0px rgba(0, 0, 0, 0.12), 0 7px 10px -5px rgba(0, 0, 0, 0.15)",
     transition: "all 150ms ease 0s",
@@ -56,7 +56,7 @@ const headerStyle = {
     fontSize: "18px",
     borderRadius: "3px",
     textTransform: "none",
-    color: "inherit",
+    color: "black",
     padding: "8px 16px",
     letterSpacing: "unset",
     "&:hover,&:focus": {
@@ -69,7 +69,7 @@ const headerStyle = {
   },
   primary: {
     backgroundColor: primaryColor,
-    color: "#FFFFFF",
+    color: "black",
     boxShadow:
       "0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 12px -5px rgba(156, 39, 176, 0.46)",
   },

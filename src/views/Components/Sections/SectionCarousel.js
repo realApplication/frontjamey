@@ -34,8 +34,8 @@ function SectionCarousel(props) {
     <div className={classes.section}>
       <div className={classes.container}>
         <GridContainer>
-          <GridItem xs={12} sm={12} md={8} className={classes.marginAuto}>
-            <Card carousel>
+          <GridItem  xs={12} sm={12} md={8} className={classes.marginAuto}>
+            <Card style={{backgroundColor:"black" ,width:"70rem" ,marginLeft:"-200px"}} carousel>
               <Carousel {...settings}>
 
                 <div>

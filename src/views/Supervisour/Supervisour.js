@@ -71,8 +71,70 @@ export default function LoginPage(props) {
   const classes = useStyles();
   const { ...rest } = props;
   return (
-    <div>
+    <>
       <Header
+        absolute
+        color="transparent"
+        rightLinks={<HeaderLinks />}
+        {...rest}
+      />
+      <div
+        className={classes.pageHeader}
+        style={{
+          backgroundImage: "url(" + image + ")",
+          backgroundSize: "cover",
+          backgroundPosition: "top center",
+        }}
+      >
+ <div className={classes.container} style={{paddingTop:"120px"}}>
+        <div class="container" id="containerr">
+          <div class="form-container sign-in-container">
+            <form onSubmit={handleSubmit} action="#">
+              <h1 style={{color:"black",fontSize:"40px"}}>Sign in Supervisour</h1>
+              <div class="social-container">
+                <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+              </div>
+              <span>or use your account</span>
+              <input onChange={handleChangeUserName} type="email" placeholder="Email" />
+              <input onChange={handleChangePassword} type="password" placeholder="Password" />
+              <a href="#">Forgot your password?</a>
+               <button to={"/main"} type="submit" simple  size="lg">
+                     LogIn
+                      {/* {
+                        loginContext.loggedIn && 
+                        <Redirect to="/main" />
+                      } */}
+                      {loginContext.loggedInSuper &&
+                        <Button onClick={logout} simple color="primary" size="lg" style={{ marginTop: "40px", marginLeft: "-130px" }} >
+                          Logout supervisour
+                        </Button>
+
+                      }
+                    </button> 
+            </form>
+          </div>
+          <div class="overlay-container " >
+            <div className="overlay">
+              <div class="overlay-panel overlay-left  backgroungg">
+                <h1>Welcome Back!</h1>
+                <p>To keep connected with us please login with your personal info</p>
+                <button class="ghost" id="signIn">Sign In</button>
+              </div>
+              <div className="overlay-panel overlay-right  backgroung" >
+                <h1>Hello, Supervisour</h1>
+                <p>Enter your personal details and start journey with us</p>
+                {/* <button class="ghost" id="signUp">Sign Up</button> */}
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+        <Footer whiteFont />
+      </div>
+
+      {/* <Header
         absolute
         color="transparent"
         brand="Jam3y Website"
@@ -177,7 +239,7 @@ export default function LoginPage(props) {
           </GridContainer>
         </div>
         <Footer whiteFont />
-      </div>
-    </div>
+      </div> */}
+    </>
   );
 }

@@ -1,96 +1,166 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 
 // core components
 import Header from "../../components/Header/Header.js";
 import HeaderLinks from "../../components/Header/HeaderLinks.js";
+import Footer from "../../components/Footer/Footer";
+import Button from "../../components/CustomButtons/Button";
+import GridContainer from "../../components/Grid/GridContainer";
 
-
+import GridItem from "../../components/Grid/GridItem";
+import { Row, Col } from 'react-bootstrap'
+import { LoginContext } from '../context';
+import { When } from 'react-if';
+import Favorite from "@material-ui/icons/Favorite";
+import { connect } from 'react-redux';
+import { getRemoteData } from '../../store/actions'
 import styles from "../../assets/jss/material-kit-react/views/landingPage";
 import './aboutus.css'
 
-import image from "../../assets/img/bg9.jpg";
+import image from "../../assets/img/bg444.jpg";
 const useStyles = makeStyles(styles);
 
-export default function LoginPage(props) {
-    const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
-    setTimeout(function () {
-        setCardAnimation("");
-    }, 700);
+function AllBooks(props) {
+
+    const loginContext = useContext(LoginContext);
+
+    useEffect(() => {
+        props.getRemoteData();
+
+    }, []);
+    const addToFav = (e, book) => {
+        e.preventDefault();
+        loginContext.addToFavBook(book);
+    };
+
     const classes = useStyles();
     const { ...rest } = props;
     return (
-        <>
-            <div className="bodyAboutus">
-                <Header
-                    absolute
-                    color="transparent"
-                    brand="Jam3y Website"
+        <div>
+            <Header
+                absolute
+                color="transparent"
+                brand="Jam3y Website"
+                rightLinks={<HeaderLinks />}
+                {...rest}
+            />
+            <div
+                className={classes.pageHeader}
+                style={{
+                    backgroundImage: "url(" + image + ")",
+                    backgroundSize: "cover",
+                    backgroundPosition: "top center",
+                   
+                }}
 
-                    rightLinks={<HeaderLinks />}
-                    {...rest}
-                />
-                <div
-                    className={classes.pageHeader}
-                    style={{
-                        backgroundImage: "url(" + image + ")",
-                        backgroundSize: "cover",
-                        backgroundPosition: "top center",
-                    }}
-                >
-
-                </div>
+            >
                 <div className={classes.container}>
-                    <article class="flow">
-                        <h1>Our Team</h1>
-                        <p>Hover or focus over each card to see the person’s job title slide in and the colour treatment change.</p>
-                        <div class="team">
-                            <ul class="auto-grid" role="list" style={{marginLeft:"1rem"}}>
-                                <li>
-                                    <a href="https://github.com/samahAbujwaied" target="_blank" class="profile">
-                                        <h2 class="profile__name">Samah Abujwaied</h2>
-                                        <p>Computer Scince</p>
-                                        <img alt="Samah Abujwaied" src="https://avatars.githubusercontent.com/u/64910804?v=4" />
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://github.com/MayyadahShehadeh" target="_blank" class="profile">
-                                        <h2 class="profile__name">Mayyadah Shehadeh</h2>
-                                        <p>MIS</p>
-                                        <img alt="Mayyadah Shehadeh" src="https://i.ibb.co/M2yNjVG/mayada.jpg" />
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://github.com/Qasem-moh" target="_blank" class="profile">
-                                        <h2 class="profile__name">Qasem Mohammad </h2>
-                                        <p>Technical Lead</p>
-                                        <img alt="Qasem Mohammad" src="https://avatars.githubusercontent.com/u/75634309?v=4" />
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://github.com/thaerbraizat" target="_blank" class="profile">
-                                        <h2 class="profile__name">Thaer Braizat</h2>
-                                        <p>Designer</p>
-                                        <img alt="Thaer Braizat" src="https://avatars.githubusercontent.com/u/81148935?v=4" />
-                                    </a>
-                                </li>
+                    <GridContainer justify="center" >
+                        {/* <GridItem xs={12} sm={12} md={4} > */}
+                                       
+                            <Row class="cards" style={{marginTop:'200px'}} >
+                            <h4 class="card__description" style={{color:"white"}}>Despite the proliferation of electronic books and libraries, which enjoy some benefits, such as abundance, free and easy access, there are two areas in which they do not naturally excel, namely clarity and brevity, and fortunately there are still people who tend to help others.</h4>
 
-                                <li>
-                                    <a href="https://github.com/Hasan-droid" target="_blank" class="profile">
-                                        <h2 class="profile__name">Hasan Baydoun</h2>
-                                        <p>Developer</p>
-                                        <img alt="Hasan Baydoun" src="https://avatars.githubusercontent.com/u/54712715?v=4" />
+                                <Col>
+                                    <a href="" class="card">
+                                        <img src="https://avatars.githubusercontent.com/u/64910804?v=4" class="card__image" alt="" />
+                                        <div class="card__overlay">
+                                            <div class="card__header">
+                                                <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>
+                                                <img class="card__thumb" src="https://avatars.githubusercontent.com/u/64910804?v=4" alt="" />
+                                                <div class="card__header-text">
+                                                    <h3 style={{width:"130px" ,marginLeft:"-20px"}} class="card__title">Samah AbuJwaied</h3>
+                                                    <span class="card__status">Developer</span>
+                                                </div>
+                                            </div>
+                                            <p class="card__description">Computer Scince</p>
+                                        </div>
                                     </a>
-                                </li>
+                                </Col>
+                                <Col>
+                                    <a href="" class="card">
+                                        <img src="https://i.ibb.co/M2yNjVG/mayada.jpg" class="card__image" alt="" />
+                                        <div class="card__overlay">
+                                            <div class="card__header">
+                                                <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>
+                                                <img class="card__thumb" src="https://i.ibb.co/M2yNjVG/mayada.jpg" alt="" />
+                                                <div class="card__header-text">
+                                                    <h3 style={{width:"130px" ,marginLeft:"-28px"}} class="card__title">Mayyadah Shehadeh</h3>
+                                                    <span class="card__status">Developer</span>
+                                                </div>
+                                            </div>
+                                            <p class="card__description">CIS</p>
+                                        </div>
+                                    </a>
+                                </Col>
+                           
+                                <Col>
+                                    <a href="" class="card">
+                                        <img src="https://avatars.githubusercontent.com/u/75634309?v=4" class="card__image" alt="" />
+                                        <div class="card__overlay">
+                                            <div class="card__header">
+                                                <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>
+                                                <img class="card__thumb" src="https://avatars.githubusercontent.com/u/75634309?v=4" alt="" />
+                                                <div class="card__header-text">
+                                                    <h3 style={{width:"130px" ,marginLeft:"-28px"}} class="card__title">Qasem Mohammd </h3>
+                                                    <span class="card__status">Developer</span>
+                                                </div>
+                                            </div>
+                                            <p class="card__description">P&M</p>
+                                        </div>
+                                    </a>
+                                </Col>
+                                <Col>
+                                    <a href="" class="card">
+                                        <img src="https://avatars.githubusercontent.com/u/81148935?v=4" class="card__image" alt="" />
+                                        <div class="card__overlay">
+                                            <div class="card__header">
+                                                <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>
+                                                <img class="card__thumb" src="https://avatars.githubusercontent.com/u/81148935?v=4" alt="" />
+                                                <div class="card__header-text">
+                                                    <h3 style={{width:"130px" ,marginLeft:"-28px"}} class="card__title">Thaer braizat </h3>
+                                                    <span class="card__status">Developer</span>
+                                                </div>
+                                            </div>
+                                            <p class="card__description"></p>
+                                        </div>
+                                    </a>
+                                </Col>
+                                <Col>
+                                    <a href="" class="card">
+                                        <img src="https://avatars.githubusercontent.com/u/54712715?v=4" class="card__image" alt="" />
+                                        <div class="card__overlay">
+                                            <div class="card__header">
+                                                <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>
+                                                <img class="card__thumb" src="https://avatars.githubusercontent.com/u/54712715?v=4" alt="" />
+                                                <div class="card__header-text">
+                                                    <h3 style={{width:"130px" ,marginLeft:"-28px"}} class="card__title">Hasan Baydoun </h3>
+                                                    <span class="card__status">Developer</span>
+                                                </div>
+                                            </div>
+                                            <p class="card__description">CS</p>
+                                        </div>
+                                    </a>
+                                </Col>
+                            </Row>
 
-                            </ul >
-                        </div >
-                    </article >
-                </div >
-            </div >
-            
-        </>
-
+                            
+                        {/* </GridItem> */}
+                    </GridContainer>
+                </div>
+                <Footer whiteFont   />
+            </div>
+        </div>
     );
 }
+const mapStateToProps = state => ({
+    bookData: state.bookData,
+
+});
+
+const mapDispatchToProps = { getRemoteData };
+
+export default connect(mapStateToProps, mapDispatchToProps)(AllBooks)
+

@@ -1,13 +1,10 @@
-import React, { useContext ,useEffect} from 'react';
-// @material-ui/core components
+import React, { useContext, useEffect } from 'react';
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Icon from "@material-ui/core/Icon";
-// @material-ui/icons
 import Email from "@material-ui/icons/Email";
 import People from "@material-ui/icons/People";
 import { Link } from "react-router-dom";
-// core components
 import Header from "../../components/Header/Header.js";
 import HeaderLinks from "../../components/Header/HeaderLinks.js";
 import Footer from "../../components/Footer/Footer.js";
@@ -20,19 +17,17 @@ import CardHeader from "../../components/Card/CardHeader.js";
 import CardFooter from "../../components/Card/CardFooter.js";
 import CustomInput from "../../components/CustomInput/CustomInput.js";
 import { Redirect } from 'react-router-dom';
-
+// import './logincss'
 import styles from "../../assets/jss/material-kit-react/views/landingPage";
 import { When } from 'react-if';
 import { LoginContext } from '../context';
+import './login.css'
 
-
-import image from "../../assets/img/bg7.jpg";
+import image from "../../assets/img/bggg.jpg";
 const useStyles = makeStyles(styles);
 
 
 export default function LoginPage(props) {
-
-
   const loginContext = useContext(LoginContext);
   console.log('loginContext', loginContext);
   useEffect(() => {
@@ -41,37 +36,45 @@ export default function LoginPage(props) {
 
   const [userName, setUserName] = React.useState("");;
   const [password, setPassword] = React.useState("");
- 
+  const [email, setEmail] = React.useState("");;
   function handleChangeUserName(e) {
-    // console.log('user name ', e.target.value);
     setUserName(e.target.value)
   }
+
   function handleChangePassword(e) {
-    // console.log('password', e.target.value);
     setPassword(e.target.value)
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-
-    // use login context to perform login operation
     loginContext.login(userName, password);
+    setUserName('');
+    setPassword('')
 
   }
+  const handleChangeEmail = e => {
+    setEmail(e.target.value)
+  }
+  const handleSubmitSignup = e => {
+    e.preventDefault();
+    loginContext.signup(email, userName, password);
+    setUserName('');
+    setPassword('');
+    setEmail('')
 
+  }
   const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
   setTimeout(function () {
     setCardAnimation("");
   }, 700);
-
+ 
   const classes = useStyles();
   const { ...rest } = props;
   return (
-    <div>
+    <>
       <Header
         absolute
         color="transparent"
-        brand="Jam3y Website"
         rightLinks={<HeaderLinks />}
         {...rest}
       />
@@ -83,95 +86,72 @@ export default function LoginPage(props) {
           backgroundPosition: "top center",
         }}
       >
-        <div className={classes.container}>
-          <GridContainer justify="center" >
-            <GridItem xs={12} sm={12} md={4} style={{ marginTop: "80px" }}>
-              <Card className={classes[cardAnimaton]}>
-                <form onSubmit={handleSubmit} className={classes.form}>
-                  <CardHeader color="primary" className={classes.cardHeader}>
-                    <div >
-                      <h4 style={{ textAlign: "center", fontStyle: "bold", textShadow: "2px 3px 3px black" }}>Student Login</h4>
-                    </div>
-
-
-                  </CardHeader>
-                  <br />
-                  <br />
-
-                  <CardBody>
-
-                    <CustomInput
-
-                      labelText="Email..."
-                      id="email"
-                      formControlProps={{
-                        fullWidth: true,
-                      }}
-
-                      inputProps={{
-                        onChange: (e) => handleChangeUserName(e),
-                        type: "email",
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            <Email className={classes.inputIconsColor} />
-                          </InputAdornment>
-                        ),
-                      }}
-
-                    />
-                    <CustomInput
-                      labelText="Password"
-                      id="pass"
-                      formControlProps={{
-                        fullWidth: true,
-                      }}
-                      inputProps={{
-                        onChange: (e) => handleChangePassword(e),
-                        type: "password",
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            <Icon className={classes.inputIconsColor}>
-                              lock_outline
-                            </Icon>
-                          </InputAdornment>
-                        ),
-                        autoComplete: "off",
-                      }}
-
-                    />
-                  </CardBody>
-                  <CardFooter className={classes.cardFooter}>
-
-
-                    <Button to={"/main"} type="submit" simple color="primary" style={{ marginTop: "-100px", marginLeft: "50px" }} size="lg">
-                      <div id="buttons">
-
-                        <div xs={12} sm={12} md={8} class="group">
-                          <a style={{ marginRight: "0rem" }} class="blam">LogIn</a>
-                        </div>
-
-                      </div>
+ <div className={classes.container} style={{paddingTop:"150px"}}>
+        <div class="container" id="containerr">
+          <div class="form-container sign-up-container" >
+            <form onSubmit={handleSubmitSignup} action="#" >
+              <h1 style={{color:"black",fontSize:"40px"}}>Create Account</h1>
+              <div class="social-container">
+                <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+              </div>
+              <span>or use your email for registration</span>
+              <input onChange={handleChangeUserName} type="text" placeholder="Name" />
+              <input onChange={handleChangeEmail} type="email" placeholder="Email" />
+              <input onChange={handleChangePassword} type="password" placeholder="Password" />
+              <button to={"/main"} type='submit'  simple size="lg">
+                     SignUp
+                        {
+                        loginContext.loggedIn && 
+                        <Redirect to="/main" />
+                      }
+                   
+                    </button>
+            </form>
+          </div>
+          <div class="form-container sign-in-container">
+            <form onSubmit={handleSubmit} action="#">
+              <h1 style={{color:"black",fontSize:"40px"}}>Sign in</h1>
+              <div class="social-container">
+                <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+              </div>
+              <span>or use your account</span>
+              <input onChange={handleChangeUserName} type="email" placeholder="Email" />
+              <input onChange={handleChangePassword} type="password" placeholder="Password" />
+              <a href="#">Forgot your password?</a>
+              <button to={"/main"} type="submit" simple  size="lg">
+                     LogIn
                       {
                         loginContext.loggedIn && 
                         <Redirect to="/main" />
                       }
-                    </Button>
-
-                    <Link to={"/signup-page"} className={classes.link}>
-                      <Button simple color="primary" size="lg" style={{ marginTop: "40px", marginLeft: "-230px" }} >
-                        If You have not account
-                      </Button>
-
-                    </Link>
-                  </CardFooter>
-              
-                </form>
-              </Card>
-            </GridItem>
-          </GridContainer>
+                    </button>
+            </form>
+          </div>
+          <div class="overlay-container " >
+            <div className="overlay">
+              <div class="overlay-panel overlay-left  backgroungg">
+                <h1>Welcome Back!</h1>
+                <p>To keep connected with us please login with your personal info</p>
+                <button class="ghost" id="signIn">Sign In</button>
+              </div>
+              <div className="overlay-panel overlay-right  backgroung" >
+                <h1>Hello, Student!</h1>
+                <p>Enter your personal details and start journey with us</p>
+                <button class="ghost" id="signUp">Sign Up</button>
+              </div>
+            </div>
+          </div>
+        </div>
         </div>
         <Footer whiteFont />
       </div>
-    </div>
+
+
+    </>
+
   );
 }
