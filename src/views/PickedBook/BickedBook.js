@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -15,29 +15,29 @@ import Favorite from "@material-ui/icons/Favorite";
 import { connect } from 'react-redux';
 import { getRemoteData } from '../../store/actions'
 import styles from "../../assets/jss/material-kit-react/views/landingPage";
-import './form.css'
+// import './form.css'
 
 import image from "../../assets/img/bg9.jpg";
 const useStyles = makeStyles(styles);
 
-function AllBooks(props) {
+function PickedBook(props) {
 
     const loginContext = useContext(LoginContext);
-
+    const [books , setBooks] = React.useState([]);
     useEffect(() => {
+       
         props.getRemoteData();
-
+        loginContext.getPickedCourses();
+        loginContext.setLoginbtn(true);
+        setBooks(JSON.parse(localStorage.getItem('data')));
+        
     }, []);
-    const addToFav = (e,book) => {
-        e.preventDefault();
-        loginContext.addToFavBook(book);
-      };
-
+     console.log('boooookkkkkks ------>',books);
     const classes = useStyles();
     const { ...rest } = props;
     return (
         <>
-            <div className="bodyAboutus">
+  <div className="bodyAboutus">
                 <Header
                     absolute
                     color="transparent"
@@ -60,8 +60,8 @@ function AllBooks(props) {
                     <h1 style={{ textAlign: "center", fontFamily: "cursive", marginTop: "7rem", color: "black" }} >Courses</h1>
                     <Row xs={1} md={3} className="g-4"  >
 
-                        {props.bookData[0] &&
-                            props.bookData[0].map((book, idx) =>
+                        {
+                           books!=null&& books.map((book, idx) =>
                             (
                                 <Col>
                                     <div class="card CardBook">
@@ -76,24 +76,7 @@ function AllBooks(props) {
                                             <div class="more-info">
 
                                                 <div style={{ textAlign: "center", marginTop: "60px", marginLeft: "-60px" }}>
-                                                    <When condition={loginContext.loggedIn}>
-                                                        <Button color="warning" round>
-                                                            <Favorite className={classes.icons} /> pick book
-                                                        </Button>
-                                                    </When>
-                                                    <br />
-                                                    <a href='/somefile.txt' download>
-                                                        <Button color="danger" round>
-
-                                                            Download
-                                                        </Button>
-
-
-                                                    </a>
-                                                    <br />
-                                                    <Button onClick={(e) => addToFav(e,book)} justIcon round color="danger">
-                                                        <Favorite className={classes.icons} />
-                                                    </Button>
+                                                    {book.title}
 
                                                 </div>
                                             </div>
@@ -110,10 +93,11 @@ function AllBooks(props) {
                             ))
                         }
                     </Row>
-
+                    
                     <Footer whiteFont />
                 </div >
             </div >
+    
 
         </>
 
@@ -126,4 +110,4 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = { getRemoteData };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AllBooks)
+export default connect(mapStateToProps, mapDispatchToProps)(PickedBook)

@@ -64,7 +64,7 @@ export default function Components(props) {
       <div className={classNames(classes.main, classes.mainRaised)}>
 
         <GridItem md={12}>
-          <When condition={!loginContext.loggedIn}>
+          {/* <When condition={!loginContext.loggedIn}>
             <Link to={"/login-page"} className={classes.link}>
               <div id="buttons">
 
@@ -85,7 +85,7 @@ export default function Components(props) {
 
               </div>
             </Link>
-          </When>
+          </When> */}
           <SectionCarousel />
           <div style={{textAlign:"center"}}>
           <p >Discription 
