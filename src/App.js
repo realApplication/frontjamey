@@ -9,7 +9,7 @@ import "./assets/scss/material-kit-react.scss"
 import Components from "./views/Components/Components";
 import LoginPage from "./views/LoginPage/LoginPage.js";
 import AboutUs from "./views/AboutUs/AboutUs"
-import SignupPage from "./views/SignupPage/SignupPage"
+// import SignupPage from "./views/SignupPage/SignupPage"
 import LoginProvider from './views/context';
 import Supervisour from './views/Supervisour/Supervisour'
 import AllBooks from './views/AllBooks/AllBooks'
@@ -26,10 +26,10 @@ function App() {
         <LoginProvider>
 
           <Route path="/login-page" component={LoginPage} />
-          <Route path="/signup-page" component={SignupPage} />
+          {/* <Route path="/signup-page" component={SignupPage} /> */}
           <Route path="/supervisour" component={Supervisour} />    
-          <Route path="/all-books" component={AllBooks} />  
           <Route path="/picked-book" component={PickedBook} />  
+          <Route path="/all-books" component={AllBooks} />  
           <Route path="/about-us" component={AboutUs} /> 
           <Route path="/main" component={Components} />
         

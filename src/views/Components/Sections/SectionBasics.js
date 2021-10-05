@@ -1,4 +1,4 @@
-import React, { useEffect,useRef, useContext } from "react";
+import React, { useEffect, useRef, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Favorite from "@material-ui/icons/Favorite";
 import Button from "../../../components/CustomButtons/Button";
@@ -10,6 +10,7 @@ import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 import { connect } from 'react-redux';
 import { getRemoteData } from '../../../store/actions'
 import { Card, Row, Col } from 'react-bootstrap'
+import './carousel.scss';
 const useStyles = makeStyles(styles);
 
 function SectionBasics(props) {
@@ -23,26 +24,32 @@ function SectionBasics(props) {
     loginContext.setLoginbtn(true);
   }, []);
 
-  const handlePicked =( e ,id)=> {
-    console.log('------000000000-----',id);
+  const handlePicked = (e, id) => {
     e.preventDefault();
     loginContext.postPickedCourses(id);
-    // socketRef.current.on("res-client", ({ name, message,id }) => {
-    //   // setChat([ ...chat, { name, message,id } ])
-    //   socketRef.current.emit('get_all')
-    //   // socketRef.current.emit('received-admin', id)
-    // })
+
   }
   return (
     <div className={classes.sections}>
-      <div className={classes.container}>
-        <div className={classes.title}>
+      {/* <div className={classes.container}>
+        <div className={classes.title}> */}
 
-          <Row xs={1} md={2} className="g-4">
-            {props.bookData[0] &&
-              props.bookData[0].map((book, idx) => (
-                <Col>
-                  <Card>
+      <Row xs={1} md={3} >
+        {props.bookData[0] &&
+          props.bookData[0].map((book, idx) => (
+           
+            <>
+
+              
+              <Col>
+
+              <h4 style={{textAlign:"center"}}>{book.title}</h4>
+                <div class="box vintage">
+                  <img src={book.image} alt="EMMYLOU" />
+
+                  <p>{book.description}</p>
+                </div>
+                {/* <Card style={{backgroundColor:"#F5DEB3" ,boxShadow:"2px 2px 2px 2px black"}}>
                     <Card.Img style={{ height: "27rem" }} variant="top" src={book.image} />
                     <Card.Body >
                       <Card.Title>{book.title}</Card.Title>
@@ -51,16 +58,16 @@ function SectionBasics(props) {
                       <Card.Text>
                         {book.description}
                       </Card.Text>
-                       {console.log('..................>>>',book.id)}
+                      {console.log('..................>>>', book.id)}
                       <div style={{ textAlign: "right" }}>
                         <When condition={loginContext.loggedIn}>
-                          <Button onClick={(e)=>handlePicked(e,book.id)}  color="primary" round>
+                          <Button onClick={(e) => handlePicked(e, book.id)} color="danger" round>
                             <Favorite className={classes.icons} /> Picked Book
                           </Button>
                         </When>
 
                         <a href='/somefile.txt' download>
-                          <Button color="primary" round>
+                          <Button color="danger" round>
 
                             Download
                           </Button>
@@ -68,20 +75,33 @@ function SectionBasics(props) {
 
                         </a>
 
-                        <Button justIcon round color="primary">
+                        <Button justIcon round color="danger">
                           <Favorite className={classes.icons} />
                         </Button>
+
+                        
 
                       </div>
 
                     </Card.Body>
-                  </Card>
-                </Col>
-              ))}
-          </Row>
-        </div>
-        <div id="buttons">
-          {/* <GridContainer justify="center">
+                  </Card> */}
+
+                {/* <div class="container">
+                    <p class="header">Image Hover Effects</p> */}
+
+
+
+
+
+
+
+              </Col>
+            </>
+          ))}
+      </Row>
+
+
+      {/* <GridContainer justify="center">
             <GridItem xs={12} sm={12} md={8}>
               <Button color="primary">Default</Button>
               <Button color="primary" round>
@@ -98,8 +118,7 @@ function SectionBasics(props) {
               </Button>
             </GridItem>
           </GridContainer> */}
-        </div>
-      </div>
+
     </div>
   );
 }

@@ -35,24 +35,24 @@ export default function Components(props) {
   return (
     <div>
       <Header
-        brand="Jam3ey website"
+        // brand="Jam3ey website"
         rightLinks={<HeaderLinks />}
         fixed
         color="transparent"
         changeColorOnScroll={{
-          height: 400,
+          height: 100,
           color: "white",
 
         }}
         {...rest}
       />
-      <Parallax image={require("../../assets/img/bg4.jpg").default}>
+      <Parallax image={require("../../assets/img/bg34.jpg").default}>
         <div className={classes.container}>
-          <GridContainer>
+          <GridContainer >
             <GridItem>
-              <div className={classes.brand}>
+              <div style={{textAlign:"center"}} className={classes.brand}>
                 <h1 className={classes.title}>Jam3ey</h1>
-                <h3 className={classes.subtitle}>
+                <h3 style={{textAlign:"center"}} >
                   "IF YOU CAN BELIEVE IT , YOUR MIND CAN ACHIEVE IT ."
                 </h3>
               </div>
@@ -63,40 +63,15 @@ export default function Components(props) {
 
       <div className={classNames(classes.main, classes.mainRaised)}>
 
-        <GridItem md={12}>
-          {/* <When condition={!loginContext.loggedIn}>
-            <Link to={"/login-page"} className={classes.link}>
-              <div id="buttons">
+        <GridItem md={12} >
 
-                <div xs={12} sm={12} md={8} class="group">
-                  <button style={{ marginRight: "0rem" }} class="blam"> <i className="fas fa-sign-in-alt"> Login </i></button>
-                </div>
-
-              </div>
-            </Link>
-          </When>
-          <When condition={loginContext.loggedIn}>
-            <Link to={"/main"} className={classes.link}>
-              <div id="buttons">
-
-                <div xs={12} sm={12} md={8} class="group">
-                  <button onClick={loginContext.logout} style={{ marginRight: "0rem" }} class="blam"> <i className="fas fa-sign-in-alt"> LogOut </i></button>
-                </div>
-
-              </div>
-            </Link>
-          </When> */}
-          <SectionCarousel />
+          
           <div style={{textAlign:"center"}}>
           <p >Discription 
 
+          <SectionCarousel />
 
-
-
-
-            
           </p>
-          <a target="_blank" href='../../assets/pdf/book.pdf' attributes-list download>Click to download</a>
           </div>
           
         </GridItem>
