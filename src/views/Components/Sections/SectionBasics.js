@@ -23,12 +23,15 @@ function SectionBasics(props) {
     props.getRemoteData();
     loginContext.setLoginbtn(true);
   }, []);
-
+  let bookdata = JSON.parse(localStorage.getItem('bookdata'));
+  console.log('bookdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', bookdata);
   const handlePicked = (e, id) => {
     e.preventDefault();
     loginContext.postPickedCourses(id);
 
   }
+  let status = JSON.parse(localStorage.getItem('status'));
+  console.log('loginContext.status',loginContext.status);
   return (
     <div className={classes.sections}>
       {/* <div className={classes.container}>
@@ -37,87 +40,43 @@ function SectionBasics(props) {
       <Row xs={1} md={3} >
         {props.bookData[0] &&
           props.bookData[0].map((book, idx) => (
-           
-            <>
 
-              
+            <>
               <Col>
 
-              <h4 style={{textAlign:"center"}}>{book.title}</h4>
+                <h4 style={{ textAlign: "center" }}>{book.title}</h4>
                 <div class="box vintage">
                   <img src={book.image} alt="EMMYLOU" />
 
                   <p>{book.description}</p>
                 </div>
-                {/* <Card style={{backgroundColor:"#F5DEB3" ,boxShadow:"2px 2px 2px 2px black"}}>
-                    <Card.Img style={{ height: "27rem" }} variant="top" src={book.image} />
-                    <Card.Body >
-                      <Card.Title>{book.title}</Card.Title>
-
-                      <Card.Title>{book.author}</Card.Title>
-                      <Card.Text>
-                        {book.description}
-                      </Card.Text>
-                      {console.log('..................>>>', book.id)}
-                      <div style={{ textAlign: "right" }}>
-                        <When condition={loginContext.loggedIn}>
-                          <Button onClick={(e) => handlePicked(e, book.id)} color="danger" round>
-                            <Favorite className={classes.icons} /> Picked Book
-                          </Button>
-                        </When>
-
-                        <a href='/somefile.txt' download>
-                          <Button color="danger" round>
-
-                            Download
-                          </Button>
-
-
-                        </a>
-
-                        <Button justIcon round color="danger">
-                          <Favorite className={classes.icons} />
-                        </Button>
-
-                        
-
-                      </div>
-
-                    </Card.Body>
-                  </Card> */}
-
-                {/* <div class="container">
-                    <p class="header">Image Hover Effects</p> */}
-
-
-
-
-
 
 
               </Col>
             </>
           ))}
       </Row>
+      
+       {status &&
+        <div style={{ color: "black" }} class="courses-container">
+          <div class="course">
+            <div class="course-preview">
+              <h6 style={{ marginLeft: "10px" }}>Course</h6>
+              {/* <h2 style={{ paddingTop: "12px" }}>{bookname}</h2> */}
+            </div>
+            <div class="course-info">
+              <h3>
+                will be class in {bookdata.className} The volunter will be  {bookdata.volunteerName},
+                Number of student , {bookdata.studentNum} ,  at {bookdata.time}   Wellcome students .....'
+      
+              </h3>
+            </div>
+      
+          </div>
+      
+        </div>}
 
 
-      {/* <GridContainer justify="center">
-            <GridItem xs={12} sm={12} md={8}>
-              <Button color="primary">Default</Button>
-              <Button color="primary" round>
-                round
-              </Button>
-              <Button color="primary" round>
-                <Favorite className={classes.icons} /> pick book
-              </Button>
-              <Button justIcon round color="primary">
-                <Favorite className={classes.icons} />
-              </Button>
-              <Button color="primary" simple>
-                simple
-              </Button>
-            </GridItem>
-          </GridContainer> */}
 
     </div>
   );
@@ -130,3 +89,5 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = { getRemoteData };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SectionBasics)
+
+

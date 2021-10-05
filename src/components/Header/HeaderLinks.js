@@ -49,12 +49,6 @@ export default function HeaderLinks(props) {
         </Link>
       </ListItem>
 
-      <ListItem className={classes.listItem}>
-        <Link to="/supervisour" className={classes.dropdownLink}>
-          Posts
-        </Link>
-      </ListItem>
-
       <ListItem className={classes.listItem} style={{ marginTop: "-25px" }}>
 
         <GridItem md={12}>
