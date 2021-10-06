@@ -27,30 +27,34 @@ const useStyles = makeStyles(styles);
 
 function Super(props) {
     const socketRef = useRef();
-    const PORT = 7893;
+    const PORT = process.env.LINK || "http://localhost:7896";
     let bookname;
     bookname = JSON.parse(localStorage.getItem('bookname'))
     const [status, setStatus] = React.useState(false);
     const [localdata, setLocaldata] = React.useState([]);
     const loginContext = useContext(LoginContext);
     // socketRef.current = io.connect(`http://localhost:${PORT}`)
-    socketRef.current = io.connect(`https://jameeey.herokuapp.com`)
-
+    // socketRef.current = io.connect(`https://jameeey.herokuapp.com`)
+    socketRef.current = io.connect(PORT)
     
     let alldata;
 
     useEffect(() => {
+
+    
+        socketRef.current.on("supervisor",async(data)=>{
+            console.log('supervisor -------------->',data);
+            loginContext.setApproval(data);
+            localStorage.setItem('bookdata', JSON.stringify(data));
+            setLocaldata(data);
+        })
         socketRef.current.on("mainwall", async (data) => {
             console.log('suoervisor //data', data)
             // alldata = data;
-            console.log('0000000000000000000000000', data);
-            loginContext.setApproval(data);
-            localStorage.setItem('bookdata', JSON.stringify(data));
-
-
-            setLocaldata(data);
-
-
+            // console.log('0000000000000000000000000', data);
+            // loginContext.setApproval(data);
+            // localStorage.setItem('bookdata', JSON.stringify(data));
+            // setLocaldata(data);
         })
     }, [])
 
@@ -135,8 +139,8 @@ function Super(props) {
                                             <div class="progress"></div>
 
                                         </div>
-                                        <h4>STUDENT NUMBER : {bookdata != null && bookdata.studentNum}</h4>
-                                        <h3> volunteer Name :{bookdata != null && bookdata.volunteerName}</h3>
+                                        <h4>STUDENT NUMBER : {bookdata != null && bookdata.studentsNum}</h4>
+                                        <h3> volunteer Name :{bookdata != null &&  bookdata.name.student}</h3>
                                         <button onClick={(e) => room(e)} class="btnn" >Room reservation</button>
                                     </div>
 
@@ -144,8 +148,8 @@ function Super(props) {
                                 {status &&
                                     <p>
                                         <h3>
-                                            will be class in {bookdata != null && bookdata.className} The volunter will be  {bookdata != null && bookdata.volunteerName},
-                                            Number of student , {bookdata != null && bookdata.studentNum} ,  at {bookdata != null && bookdata.time}   Wellcome students .....'
+                                            {/* will be class in {bookdata != null && bookdata.className} The volunter will be  {bookdata != null && bookdata.name.student},
+                                            Number of student , {bookdata != null && bookdata.studentsNum} ,  at {bookdata != null && bookdata.time}   Wellcome students .....' */}
 
                                         </h3>
 

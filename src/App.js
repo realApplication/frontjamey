@@ -19,12 +19,6 @@ import Super from './views/supervisourpage/superpage'
 let hist = createBrowserHistory();
 
 function App() {
-  // const socketRef = useRef();
-  // const PORT = 7893
-  // const SERVERPORT = 7896
-
-  // socketRef.current = io.connect(`http://localhost:${PORT}`)
-  
 
   return (
     <>

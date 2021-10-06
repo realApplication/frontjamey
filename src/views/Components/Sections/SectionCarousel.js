@@ -47,7 +47,7 @@ function SectionCarousel(props) {
                     </h4>
                   </div>
                 </div>
-                <div>
+                {/* <div>
                   <img
                     src={props.bookData[0] && props.bookData[0][1].image}
                     alt="Second slide"
@@ -87,7 +87,7 @@ function SectionCarousel(props) {
                       {props.bookData[0] && props.bookData[0][5].title}
                     </h4>
                   </div>
-                </div>
+                </div> */}
               </Carousel>
             </Card>
 
