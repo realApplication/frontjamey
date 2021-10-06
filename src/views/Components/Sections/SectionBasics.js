@@ -19,7 +19,7 @@ function SectionBasics(props) {
   const socketRef = useRef()
   const classes = useStyles();
   const api =  process.env.LINK || 'http://localhost:7896';
-
+    // const api = "https://jameeey.herokuapp.com";
   useEffect(() => {
     socketRef.current = io.connect(api)
         // socketRef.current = io.connect("https://jameeey.herokuapp.com")

@@ -28,6 +28,7 @@ const useStyles = makeStyles(styles);
 function Super(props) {
     const socketRef = useRef();
     const PORT = process.env.LINK || "http://localhost:7896";
+    // const PORT = "https://jameeey.herokuapp.com"
     let bookname;
     bookname = JSON.parse(localStorage.getItem('bookname'))
     const [status, setStatus] = React.useState(false);
@@ -94,7 +95,6 @@ function Super(props) {
        localStorage.setItem("random" ,JSON.stringify(classes[rand]))
         return classes[rand];
     }
-    // console.log('boooookkkkkks ------>', books);
     const classes = useStyles();
     const { ...rest } = props;
     return (
@@ -155,7 +155,7 @@ function Super(props) {
                                 {status &&
                                     <p>
                                         <h3>
-                                            {console.log("random" , random())}
+                                            
                                             will be class in {bookdata != null && random()} The volunter will be  {bookdata != null && bookdata.name.student},
                                             Number of student , {bookdata != null && bookdata.studentsNum} ,  at {bookdata != null && bookdata.time}   Wellcome students .....'
 

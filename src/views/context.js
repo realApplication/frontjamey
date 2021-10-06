@@ -9,7 +9,7 @@ export const LoginContext = React.createContext();
 // const API = 'https://jameeey.herokuapp.com';
 // const API = 'http://localhost:7896';
 const API =  process.env.LINK || 'http://localhost:7896';
-
+// const API = "https://jameeey.herokuapp.com"
 // 2- create a component that will have the provider
 export default function LoginProvider(props) {
 
