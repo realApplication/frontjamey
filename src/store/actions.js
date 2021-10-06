@@ -1,6 +1,6 @@
 import superagent from 'superagent';
 
-const api = 'http://localhost:7896/book';
+const api = 'https://jameeey.herokuapp.com/book';
 
 export const getRemoteData = () => (dispatch, state) => {
 
