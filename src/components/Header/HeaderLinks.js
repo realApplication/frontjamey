@@ -66,7 +66,7 @@ export default function HeaderLinks(props) {
             </Link>
           </When>
           <When condition={loginContext.loggedIn}>
-            <Link to={"/main"} className={classes.link}>
+            <Link to={"/"} className={classes.link}>
               <div id="buttons">
 
                 <div xs={12} sm={12} md={8} class="group" style={{ marginTop: "35px" }}>

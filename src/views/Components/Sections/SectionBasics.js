@@ -18,8 +18,12 @@ function SectionBasics(props) {
   console.log('main context ', loginContext);
   const socketRef = useRef()
   const classes = useStyles();
+  const api =  process.env.LINK || 'http://localhost:7896';
+
   useEffect(() => {
-    socketRef.current = io.connect("https://jameeey.herokuapp.com")
+    socketRef.current = io.connect(api)
+        // socketRef.current = io.connect("https://jameeey.herokuapp.com")
+
     props.getRemoteData();
     loginContext.setLoginbtn(true);
   }, []);

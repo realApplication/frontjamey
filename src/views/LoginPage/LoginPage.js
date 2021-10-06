@@ -122,11 +122,11 @@ export default function LoginPage(props) {
               <input onChange={handleChangeUserName} type="email" placeholder="Email" />
               <input onChange={handleChangePassword} type="password" placeholder="Password" />
               <a href="#">Forgot your password?</a>
-              <button to={"/main"} type="submit" simple  size="lg">
+              <button to={"/"} type="submit" simple  size="lg">
                      LogIn
                       {
                         loginContext.loggedIn && 
-                        <Redirect to="/main" />
+                        <Redirect to="/" />
                       }
                     </button>
             </form>

@@ -1,11 +1,14 @@
 import superagent from 'superagent';
 
-const api = 'https://jameeey.herokuapp.com/book';
+const api =  process.env.LINK || 'http://localhost:7896';
+
+// const api = 'http://localhost:7896/book';
+
 
 export const getRemoteData = () => (dispatch, state) => {
 
     console.log("inside get book ");
-    return superagent.get(api).then(res => {
+    return superagent.get(`${api}/book`).then(res => {
         dispatch(getAction(res.body));
     });
 }
