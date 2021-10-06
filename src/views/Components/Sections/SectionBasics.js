@@ -19,7 +19,7 @@ function SectionBasics(props) {
   const socketRef = useRef()
   const classes = useStyles();
   useEffect(() => {
-    socketRef.current = io.connect("http://localhost:7896")
+    socketRef.current = io.connect("https://jameey.herokuapp.com/")
     props.getRemoteData();
     loginContext.setLoginbtn(true);
   }, []);
