@@ -67,11 +67,13 @@ export default function Components(props) {
 
           
           <div style={{textAlign:"center"}}>
-          <p >Discription 
-
+          <h3 style={{paddingTop:"100px"}}>Description  </h3>
+           <h4 style={{width:"700px" , color :"black",fontFamily:"monospace",paddingTop:"50px",marginLeft:"250px"}}>
+           An application aims university students and help them in their reviews of courses by get all students needs help in specific subject  and find a volunteer how can explain the subject to them, besides pick a classroom to set in it , in a real efficient and time saving way.
+           </h4>
           <SectionCarousel />
 
-          </p>
+         
           </div>
           
         </GridItem>

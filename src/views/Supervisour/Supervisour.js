@@ -26,7 +26,7 @@ import { When } from 'react-if';
 import { LoginContext } from '../context';
 
 
-import image from "../../assets/img/bg9.jpg";
+import image from "../../assets/img/bggg.jpg";
 const useStyles = makeStyles(styles);
 
 export default function LoginPage(props) {

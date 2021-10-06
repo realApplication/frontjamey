@@ -129,8 +129,8 @@ export default function LoginProvider(props) {
     const logoutSupervisor = () => {
         setLoggedInSuper(false);
         setUser({});
-        cookie.remove('token');
-        localStorage.clear();
+        cookie.remove('tokensuper');
+        
     }
 
     // =============================> pickedcourses

@@ -72,7 +72,6 @@ export default function HeaderLinks(props) {
                 <div xs={12} sm={12} md={8} class="group" style={{ marginTop: "35px" }}>
                   <button onClick={loginContext.logout} class="btn btn-danger btn-round">  <i className="fas fa-sign-in-alt"> Logout </i></button>
 
-                  {/* <button onClick={loginContext.logout} style={{ marginRight: "0rem" }} class="blam"> <i className="fas fa-sign-in-alt"> LogOut </i></button> */}
                 </div>
 
               </div>

@@ -46,7 +46,7 @@ export default function Header(props) {
         .classList.remove(classes[color]);
       document.body
         .getElementsByTagName("header")[0]
-        .classList.add(classes['white']);
+        .classList.add(classes['black']);
     } else {
       document.body
         .getElementsByTagName("header")[0]
@@ -65,7 +65,7 @@ export default function Header(props) {
   });
   const brandComponent = <Button  className={classes.title}>
     <Link to="/main">
-    <img src='https://www.pinclipart.com/picdir/big/523-5238864_book-cover-outline-clip-art-src-data-transparent.png'width='100px'height='70px'/>
+    <img src='https://i.ibb.co/HF0F8d1/Jam3ey.png'width='100px'height='70px'/>
     </Link>
    
    </Button>;
