@@ -28,6 +28,8 @@ function SectionBasics(props) {
     loginContext.setLoginbtn(true);
   }, []);
   let bookdata = JSON.parse(localStorage.getItem('bookdata'));
+  let random=JSON.parse(localStorage.getItem("random"));
+  let bookName=JSON.parse(localStorage.getItem("bookname"))
   console.log('bookdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', bookdata);
   const handlePicked = (e, id) => {
     e.preventDefault();
@@ -66,12 +68,14 @@ function SectionBasics(props) {
           <div class="course">
             <div class="course-preview">
               <h6 style={{ marginLeft: "10px" }}>Course</h6>
+              <h3>{bookName}</h3>
               {/* <h2 style={{ paddingTop: "12px" }}>{bookname}</h2> */}
             </div>
             <div class="course-info">
               <h3>
-                will be class in {bookdata.className} The volunter will be  {bookdata.volunteerName},
-                Number of student , {bookdata.studentNum} ,  at {bookdata.time}   Wellcome students .....'
+                  will be class in {bookdata != null && random} The volunter will be  {bookdata != null && bookdata.name.student},
+                                            Number of student , {bookdata != null && bookdata.studentsNum} ,  at {bookdata != null && bookdata.time}   Wellcome students .....'
+                
       
               </h3>
             </div>

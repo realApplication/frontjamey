@@ -49,7 +49,8 @@ function Super(props) {
             setLocaldata(data);
         })
         socketRef.current.on("mainwall", async (data) => {
-            console.log('suoervisor //data', data)
+            console.log('suoervisor //data', data.className)
+            localStorage.setItem("className" , JSON.stringify(data))
             // alldata = data;
             // console.log('0000000000000000000000000', data);
             // loginContext.setApproval(data);
@@ -86,6 +87,12 @@ function Super(props) {
         e.preventDefault();
         localStorage.setItem('status', JSON.stringify(true));
         setStatus(true);
+    }
+    const random=()=>{
+        const classes=['101H' , '102H' , '103T' , '104C' , '102B']
+       let rand=Math.floor(Math.random()*5);
+       localStorage.setItem("random" ,JSON.stringify(classes[rand]))
+        return classes[rand];
     }
     // console.log('boooookkkkkks ------>', books);
     const classes = useStyles();
@@ -148,8 +155,9 @@ function Super(props) {
                                 {status &&
                                     <p>
                                         <h3>
-                                            {/* will be class in {bookdata != null && bookdata.className} The volunter will be  {bookdata != null && bookdata.name.student},
-                                            Number of student , {bookdata != null && bookdata.studentsNum} ,  at {bookdata != null && bookdata.time}   Wellcome students .....' */}
+                                            {console.log("random" , random())}
+                                            will be class in {bookdata != null && random()} The volunter will be  {bookdata != null && bookdata.name.student},
+                                            Number of student , {bookdata != null && bookdata.studentsNum} ,  at {bookdata != null && bookdata.time}   Wellcome students .....'
 
                                         </h3>
 
