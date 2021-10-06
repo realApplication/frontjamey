@@ -33,7 +33,10 @@ function Super(props) {
     const [status, setStatus] = React.useState(false);
     const [localdata, setLocaldata] = React.useState([]);
     const loginContext = useContext(LoginContext);
-    socketRef.current = io.connect(`http://localhost:${PORT}`)
+    // socketRef.current = io.connect(`http://localhost:${PORT}`)
+    socketRef.current = io.connect(`https://jameey.herokuapp.com/`)
+
+    
     let alldata;
 
     useEffect(() => {
