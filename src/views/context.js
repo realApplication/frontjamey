@@ -11,6 +11,7 @@ const API = 'http://localhost:7896';
 export default function LoginProvider(props) {
 
     const [loggedIn, setLoggedIn] = useState(false);
+    const {pickedPage , setPickedPage}=useState(false)
     const [loggedInSuper, setLoggedInSuper] = useState(false);
     const [user, setUser] = useState({ email: '' });
     const [pickedArr, setPickedArr] = useState([]);
@@ -41,11 +42,11 @@ export default function LoginProvider(props) {
         console.log('email ------------>', email, 'password------------->', password);
         try {
             const response = await superagent.post(`${API}/v1/signin`).set('authorization', `Basic ${base64.encode(`${email}:${password}`)}`)
-            console.log('login supervisor---->', response.body.supervisor.token);
-            validateMyTokenloginSupervisor(response.body.supervisor.token);
+            console.log('login supervisor---->', response.body.token);
+            validateMyTokenloginSupervisor(response.body.token);
             //    console.log('on try');
         } catch (err) {
-            console.log('sooooooologinSupervisorooooooooooooory');
+            console.log('sooooooologinSupervisorooooooooooooory',err.message);
         }
     }
 
@@ -99,10 +100,12 @@ export default function LoginProvider(props) {
     }
 
     const validateMyTokenloginSupervisor = (token) => {
+        console.log("token//React supervisor" , token)
         if (token) {
             const user = jwt.decode(token);
             setLoginStateSuper(true, user);
             cookie.save('tokensuper', token);
+
 
         } else {
             setLoginStateSuper(false, {});
@@ -126,8 +129,8 @@ export default function LoginProvider(props) {
     const logoutSupervisor = () => {
         setLoggedInSuper(false);
         setUser({});
-        cookie.remove('token');
-        localStorage.clear();
+        cookie.remove('tokensuper');
+        
     }
 
     // =============================> pickedcourses
@@ -140,10 +143,13 @@ export default function LoginProvider(props) {
             let response = await superagent
                 .get(`${API}/pickedbook/${idk}`)
                 .set("authorization", `Bearer ${token}`);
-            let dataArr = await response.body
-            setPickedArr(dataArr);
-            localStorage.setItem("data", JSON.stringify(dataArr));
-
+              
+                    let dataArr = await response.body
+                    setPickedArr(dataArr);
+                    localStorage.setItem("data", JSON.stringify(dataArr));
+        
+              
+           
         }
     }
     const postPickedCourses = async (id) => {
@@ -154,7 +160,13 @@ export default function LoginProvider(props) {
             let response = await superagent
                 .post(`${API}/pickedbook/${id}`)
                 .set("authorization", `Bearer ${token}`);
+                if(response.body=="all ready have it  !!!!!!!!!!!!!!!"){
+                 
+                    alert("all ready have it")
+                }
+             
             console.log('response ----------------------->', response.body);
+           
 
         }
     }
@@ -179,6 +191,9 @@ export default function LoginProvider(props) {
 
 
     }
+    let setPicked_Page=()=>{
+        setPickedPage(true)
+    }
 
     const state = {
         loggedIn: loggedIn,
@@ -200,6 +215,8 @@ export default function LoginProvider(props) {
         approval:approval,
         setApproval:setApproval,
         bookname:bookname,
+        pickedPage:pickedPage,
+        setPicked_Page:setPicked_Page,
         setStatus:setStatus,
         status:status
 

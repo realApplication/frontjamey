@@ -13,11 +13,13 @@ import GridItem from "../../components/Grid/GridItem.js";
 import { Card, Row, Col } from 'react-bootstrap'
 import { LoginContext } from '../context';
 import { When } from 'react-if';
+import { Link } from "react-router-dom";
+
 import Favorite from "@material-ui/icons/Favorite";
 import { connect } from 'react-redux';
 import { getRemoteData } from '../../store/actions'
 import styles from "../../assets/jss/material-kit-react/views/landingPage";
-
+import Swal from 'sweetalert2'
 import './super.css'
 
 import image from "../../assets/img/bg444.jpg";
@@ -29,28 +31,28 @@ function Super(props) {
     let bookname;
     bookname = JSON.parse(localStorage.getItem('bookname'))
     const [status, setStatus] = React.useState(false);
-    const [localdata ,setLocaldata]=React.useState([]);
+    const [localdata, setLocaldata] = React.useState([]);
     const loginContext = useContext(LoginContext);
     socketRef.current = io.connect(`http://localhost:${PORT}`)
-    let alldata ;
-    let bookdata ;
+    let alldata;
+
     useEffect(() => {
         socketRef.current.on("mainwall", async (data) => {
             console.log('suoervisor //data', data)
             // alldata = data;
-            console.log('0000000000000000000000000',data);
+            console.log('0000000000000000000000000', data);
             loginContext.setApproval(data);
-            localStorage.setItem('bookdata', JSON.stringify(alldata));
-            bookdata = JSON.parse(localStorage.getItem('bookdata'));
+            localStorage.setItem('bookdata', JSON.stringify(data));
+
 
             setLocaldata(data);
-            
-            
+
+
         })
-    },[])
-   
-         
-  
+    }, [])
+
+    let bookdata = JSON.parse(localStorage.getItem('bookdata'));
+
     const handleAskHelp = async (e) => {
         e.preventDefault();
         let data = await loginContext.handleAskHelp();
@@ -60,7 +62,16 @@ function Super(props) {
     const volunteer = async (e) => {
         e.preventDefault();
         let data = await loginContext.volunteer();
-        alert(data);
+        // alert(data);
+        Swal.fire({
+            title: data,
+            // showClass: {
+            //     popup: 'animate__animated animate__fadeInDown'
+            // },
+            // hideClass: {
+            //     popup: 'animate__animated animate__fadeOutUp'
+            // }
+        })
         console.log('data volunteer-->', data);
 
     }
@@ -74,7 +85,7 @@ function Super(props) {
     const { ...rest } = props;
     return (
         <>
-      
+
             {/* <Header
                 absolute
                 color="transparent"
@@ -82,7 +93,18 @@ function Super(props) {
                 rightLinks={<HeaderLinks />}
                 {...rest}
             /> */}
+            <When condition={loginContext.loggedInSuper}>
+                <Link to={"/supervisour"} className={classes.link}>
+                    <div id="buttons">
 
+                        <div xs={12} sm={12} md={8} class="group" style={{ marginTop: "35px" }}>
+                            <button onClick={loginContext.logoutSupervisor} class="btn btn-danger btn-round">  <i className="fas fa-sign-in-alt"> Logout </i></button>
+
+                        </div>
+
+                    </div>
+                </Link>
+            </When>
             <div
                 className={classes.pageHeader}
                 style={{
@@ -97,7 +119,7 @@ function Super(props) {
 
                         <div style={{ marginTop: "7rem" }}>
                             Supervisour page
-                          
+
 
                             <div style={{ color: "black" }} class="courses-container">
                                 <div class="course">
@@ -110,8 +132,8 @@ function Super(props) {
                                             <div class="progress"></div>
 
                                         </div>
-                                        <h4>STUDENT NUMBER : {  bookdata!=null && bookdata.studentNum}</h4>
-                                        <h3> volunteer Name :{bookdata!=null && bookdata.volunteerName}</h3>
+                                        <h4>STUDENT NUMBER : {bookdata != null && bookdata.studentNum}</h4>
+                                        <h3> volunteer Name :{bookdata != null && bookdata.volunteerName}</h3>
                                         <button onClick={(e) => room(e)} class="btnn" >Room reservation</button>
                                     </div>
 
@@ -119,8 +141,8 @@ function Super(props) {
                                 {status &&
                                     <p>
                                         <h3>
-                                            will be class in {bookdata!=null && bookdata.className} The volunter will be  {bookdata!=null && bookdata.volunteerName},
-                                            Number of student , { bookdata!=null && bookdata.studentNum} ,  at {bookdata!=null && bookdata.time}   Wellcome students .....'
+                                            will be class in {bookdata != null && bookdata.className} The volunter will be  {bookdata != null && bookdata.volunteerName},
+                                            Number of student , {bookdata != null && bookdata.studentNum} ,  at {bookdata != null && bookdata.time}   Wellcome students .....'
 
                                         </h3>
 

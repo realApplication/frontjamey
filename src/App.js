@@ -34,13 +34,13 @@ function App() {
       
         <LoginProvider>
 
-          <Route path="/login-page" component={LoginPage} />
-          <Route path="/supervisour" component={Supervisour} />    
-          <Route path="/picked-book" component={PickedBook} />  
-          <Route path="/all-books" component={AllBooks} />  
-          <Route path="/super-page" component={Super} /> 
-          <Route path="/about-us" component={AboutUs} /> 
-          <Route path="/main" component={Components} />
+          <Route path="/login-page" exact component={LoginPage} />
+          <Route path="/supervisour" exact component={Supervisour} />    
+          <Route path="/picked-book" exact component={PickedBook} />  
+          <Route path="/all-books" exact component={AllBooks} />  
+          <Route path="/super-page" exact component={Super} /> 
+          <Route path="/about-us" exact component={AboutUs} /> 
+          <Route path="/main" exact component={Components} />
         
           </LoginProvider>
     

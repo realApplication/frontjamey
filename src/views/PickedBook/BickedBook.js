@@ -1,7 +1,8 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
+import Swal from 'sweetalert2'
 // core components
 import Header from "../../components/Header/Header.js";
 import HeaderLinks from "../../components/Header/HeaderLinks.js";
@@ -26,6 +27,7 @@ function PickedBook(props) {
 
     const loginContext = useContext(LoginContext);
     const [books, setBooks] = React.useState([]);
+
     useEffect(() => {
         props.getRemoteData();
         loginContext.getPickedCourses();
@@ -34,22 +36,47 @@ function PickedBook(props) {
 
     }, []);
 
-    const handleAskHelp= async(e)=>{
+
+
+
+
+    const handleAskHelp = async (e) => {
         e.preventDefault();
-       let data =  await loginContext.handleAskHelp();
-       alert(data);
-       console.log('data ------------>',data);
+        let data = await loginContext.handleAskHelp();
+        // alert(data);
+
+
+        Swal.fire({
+            title: data,
+            // showClass: {
+            //     popup: 'animate__animated animate__fadeInDown'
+            // },
+            // hideClass: {
+            //     popup: 'animate__animated animate__fadeOutUp'
+            // }
+        })
+        console.log('data ------------>', data);
     }
-    const volunteer=async(e,book)=>{
+    const volunteer = async (e, book) => {
         e.preventDefault();
         let data = await loginContext.volunteer(book.title);
-        alert(data);
+        Swal.fire({
+            title: data,
+            // showClass: {
+            //     popup: 'animate__animated animate__fadeInDown'
+            // },
+            // hideClass: {
+            //     popup: 'animate__animated animate__fadeOutUp'
+            // }
+        })
+        // alert(data);
 
     }
     const classes = useStyles();
     const { ...rest } = props;
     return (
         <>
+            {/* {setPickedPage(true)} */}
             <Header
                 absolute
                 color="transparent"
@@ -68,14 +95,14 @@ function PickedBook(props) {
             >
                 <div className={classes.container}>
                     <GridContainer justify="center" >
-                        <h1  style={{ paddingTop: "140px", fontFamily: "monospace", marginBottom: '20px' }}>Picked Books</h1>
-                        <Row xs={1} md={2} className="g-4"   >
+                        <h1 style={{ paddingTop: "140px", fontFamily: "monospace", marginBottom: '20px' }}>Picked Books</h1>
+                        <Row xs={1} md={1} className="g-4"   >
 
                             {
                                 books != null && books.map((book, idx) =>
                                 (
-                                    <Col>
-                                        <h3 style={{ textAlign: "center", fontSize: "20px" }}> Course : {book.title}</h3>
+                                    <Col style={{ marginLeft: "300px" }}>
+                                        <h3 style={{ fontSize: "20px" }}> Course : {book.title}</h3>
 
                                         <div id="container">
                                             <div class="product-details">
@@ -91,13 +118,13 @@ function PickedBook(props) {
                                                         <li>Author : {book.author}</li>
                                                         <div style={{ textAlign: "center", marginLeft: "-60px" }}>
                                                             <When condition={loginContext.loggedIn}>
-                                                                <Button  onClick={handleAskHelp} color="warning" round>
+                                                                <Button onClick={handleAskHelp} color="warning" round>
                                                                     <Favorite className={classes.icons} /> Ask For Help
                                                                 </Button>
                                                             </When>
                                                             <br />
 
-                                                            <Button onClick={(e)=>volunteer(e,book)} color="danger" round>
+                                                            <Button onClick={(e) => volunteer(e, book)} color="danger" round>
 
                                                                 Volunteer
                                                             </Button>
