@@ -160,7 +160,7 @@ export default function LoginPage(props) {
                   </CardBody>
                   <CardFooter className={classes.cardFooter}>
                   
-                    <Button to={"/main"} type='submit' style={{marginTop:"-100px",marginLeft:"40px"}} simple color="primary" size="lg">
+                    <Button to={"/"} type='submit' style={{marginTop:"-100px",marginLeft:"40px"}} simple color="primary" size="lg">
                       <div id="buttons">
 
                         <div xs={12} sm={12} md={8} >
@@ -168,7 +168,7 @@ export default function LoginPage(props) {
                         </div>
                         {
                         loginContext.loggedIn && 
-                        <Redirect to="/main" />
+                        <Redirect to="/" />
                       }
                       </div>
                     </Button>

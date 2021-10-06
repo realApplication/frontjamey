@@ -33,14 +33,14 @@ function App() {
         {/* <Route path="/" exact component={Components} />  */}
       
         <LoginProvider>
-
-          <Route path="/login-page" exact component={LoginPage} />
-          <Route path="/supervisour" exact component={Supervisour} />    
-          <Route path="/picked-book" exact component={PickedBook} />  
-          <Route path="/all-books" exact component={AllBooks} />  
-          <Route path="/super-page" exact component={Super} /> 
-          <Route path="/about-us" exact component={AboutUs} /> 
-          <Route path="/main" exact component={Components} />
+        <Route exact path="/"  component={Components} />
+          <Route exact path="/login-page"  component={LoginPage} />
+          <Route exact path="/supervisour"component={Supervisour} />    
+          <Route exact path="/picked-book"  component={PickedBook} />  
+          <Route  exact path="/all-books" component={AllBooks} />  
+          <Route exact path="/super-page" component={Super} /> 
+          <Route  exact path="/about-us"  component={AboutUs} /> 
+          
         
           </LoginProvider>
     

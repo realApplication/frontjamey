@@ -64,7 +64,7 @@ export default function Header(props) {
     [classes.fixed]: fixed,
   });
   const brandComponent = <Button  className={classes.title}>
-    <Link to="/main">
+    <Link to="/">
     <img src='https://i.ibb.co/HF0F8d1/Jam3ey.png'width='100px'height='70px'/>
     </Link>
    
