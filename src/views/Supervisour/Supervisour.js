@@ -101,7 +101,7 @@ export default function LoginPage(props) {
               <input onChange={handleChangeUserName} type="email" placeholder="Email" />
               <input onChange={handleChangePassword} type="password" placeholder="Password" />
               <a href="#">Forgot your password?</a>
-               <button to={"/main"} type="submit" simple  size="lg">
+               <button to={"/"} type="submit" simple  size="lg">
                      LogIn
                      {console.log(" loginContext.loggedInSuper//supervisor.js",  loginContext.loggedInSuper)}
                       {

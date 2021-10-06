@@ -24,7 +24,7 @@ export default function HeaderLinks(props) {
   return (
     <List className={classes.list} style={{ fontWeight: "bold" }} >
       <ListItem className={classes.listItem}  >
-        <Link to="/main" className={classes.dropdownLink}>
+        <Link to="/" className={classes.dropdownLink}>
 
           <i class="fa-solid fa-house"> Main</i>
 
