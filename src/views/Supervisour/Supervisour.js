@@ -36,7 +36,7 @@ export default function LoginPage(props) {
   console.log('loginContext-------------->supervisour', loginContext);
   useEffect(() => {
     loginContext.setLoginbtn(false);
-}, []);
+});
   const [userName, setUserName] = React.useState("");
 
   const [password, setPassword] = React.useState("");
@@ -103,8 +103,9 @@ export default function LoginPage(props) {
               <a href="#">Forgot your password?</a>
                <button to={"/main"} type="submit" simple  size="lg">
                      LogIn
-                      
+                     {console.log(" loginContext.loggedInSuper//supervisor.js",  loginContext.loggedInSuper)}
                       {
+                     
                         loginContext.loggedInSuper && 
                         <Redirect to="/super-page" />
                       }

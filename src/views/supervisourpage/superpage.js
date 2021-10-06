@@ -33,15 +33,15 @@ function Super(props) {
     const loginContext = useContext(LoginContext);
     socketRef.current = io.connect(`http://localhost:${PORT}`)
     let alldata ;
-    let bookdata ;
+   
     useEffect(() => {
         socketRef.current.on("mainwall", async (data) => {
             console.log('suoervisor //data', data)
             // alldata = data;
             console.log('0000000000000000000000000',data);
             loginContext.setApproval(data);
-            localStorage.setItem('bookdata', JSON.stringify(alldata));
-            bookdata = JSON.parse(localStorage.getItem('bookdata'));
+            localStorage.setItem('bookdata', JSON.stringify(data));
+          
 
             setLocaldata(data);
             
@@ -49,7 +49,7 @@ function Super(props) {
         })
     },[])
    
-         
+  let  bookdata = JSON.parse(localStorage.getItem('bookdata'));
   
     const handleAskHelp = async (e) => {
         e.preventDefault();

@@ -19,7 +19,7 @@ import styles from "../../../assets/jss/material-kit-react/views/componentsSecti
 const useStyles = makeStyles(styles);
 
 function SectionCarousel(props) {
-  // console.log('sammmmmmmmmm',props.bookData[0][0].title);
+ //  console.log('props//SectionCarousel',props.bookData[0][0].title);
  
   const classes = useStyles();
   const settings = {

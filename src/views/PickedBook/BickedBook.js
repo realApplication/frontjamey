@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
@@ -26,13 +26,18 @@ function PickedBook(props) {
 
     const loginContext = useContext(LoginContext);
     const [books, setBooks] = React.useState([]);
+  
     useEffect(() => {
         props.getRemoteData();
         loginContext.getPickedCourses();
         loginContext.setLoginbtn(true);
         setBooks(JSON.parse(localStorage.getItem('data')));
 
-    }, []);
+    },[]);
+
+
+
+
 
     const handleAskHelp= async(e)=>{
         e.preventDefault();
@@ -50,6 +55,7 @@ function PickedBook(props) {
     const { ...rest } = props;
     return (
         <>
+        {/* {setPickedPage(true)} */}
             <Header
                 absolute
                 color="transparent"
@@ -69,7 +75,7 @@ function PickedBook(props) {
                 <div className={classes.container}>
                     <GridContainer justify="center" >
                         <h1  style={{ paddingTop: "140px", fontFamily: "monospace", marginBottom: '20px' }}>Picked Books</h1>
-                        <Row xs={1} md={2} className="g-4"   >
+                        <Row xs={1} md={1} className="g-4"   >
 
                             {
                                 books != null && books.map((book, idx) =>

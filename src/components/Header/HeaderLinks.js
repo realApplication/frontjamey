@@ -37,6 +37,8 @@ export default function HeaderLinks(props) {
       </ListItem>
       <ListItem className={classes.listItem}>
         <When condition={loginContext.loggedIn}>
+           {loginContext.setPicked_Page} 
+           {console.log("loginContext.pickedPage",loginContext.pickedPage)}
           <Link to="/picked-book" className={classes.dropdownLink}>
             Picked Books
           </Link>
