@@ -34,7 +34,7 @@ function Super(props) {
     const [localdata, setLocaldata] = React.useState([]);
     const loginContext = useContext(LoginContext);
     // socketRef.current = io.connect(`http://localhost:${PORT}`)
-    socketRef.current = io.connect(`https://jameey.herokuapp.com/`)
+    socketRef.current = io.connect(`https://jameeey.herokuapp.com`)
 
     
     let alldata;
